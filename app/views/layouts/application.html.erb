@@ -12,11 +12,22 @@
 
   <body>
     <header>
-      <h1>Pagamentos</h1>
+      <div>
+        <h1>Pagamentos</h1>
+      </div>
+
       <nav>
-        <ul>
-          <%= link_to 'Registrar-se', new_admin_registration_path %>
-        </ul>
+        <% if admin_signed_in? %>
+          <%= current_admin.name %> | 
+          <%= current_admin.email %> |
+          <%= button_to 'Sair', destroy_admin_session_path %>
+        <% else %>
+          <ul>
+            <li>
+              <%= link_to 'Registrar-se', new_admin_registration_path %>
+            </li>
+          </ul>
+        <% end %>
       </nav>
     </header>
     
