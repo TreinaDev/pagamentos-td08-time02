@@ -11,7 +11,18 @@
   </head>
 
   <body>
-    <h1>Pagamentos</h1>
+    <header>
+      <h1>Pagamentos</h1>
+      <nav>
+        <ul>
+          <%= link_to 'Registrar-se', new_admin_registration_path %>
+        </ul>
+      </nav>
+    </header>
+    
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>
