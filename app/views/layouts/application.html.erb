@@ -12,6 +12,14 @@
 
   <body>
     <h1>Pagamentos</h1>
+    <header>
+      <nav>
+        <ul>
+          <li><%= link_to 'Taxa de Câmbio', currencies_path %></li>
+          <li><%= link_to 'Cadastrar nova Taxa', new_currency_path %></li>
+        </ul>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,7 @@
+<h3>Taxas de Câmbio</h3>
+
+<h4>Taxa Válida</h4>
+<% @currencies.each do |currency| %>
+  <p>Valor de um Rubi é <%= currency.currency_value %> Reais</p>
+  <p>Status: <%= currency.status %></p>
+<% end %>
