@@ -1,34 +1,34 @@
-<h2>Sign up</h2>
+<h2>Cadastro de administradores</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :name, 'Nome completo' %> <br/>
+    <%= f.label :name %> <br/>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :email, 'E-mail'%> <br/>
+    <%= f.label :email %> <br/>
     <%= f.email_field :email %>
   </div>
 
   <div class="field">
-    <%= f.label :registration_number, 'CPF' %> <br/>
+    <%= f.label :registration_number %> <br/>
     <%= f.text_field :registration_number %>
   </div>
 
   <div class="field">
-    <%= f.label :password, 'Senha' %>
+    <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> mínimo de caracteres)</em>
     <% end %> <br/>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "Nova senha" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "Nova senha" %>
   </div>
 
   <div class="actions">
