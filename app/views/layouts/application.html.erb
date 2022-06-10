@@ -11,15 +11,31 @@
   </head>
 
   <body>
-    <h1>Pagamentos</h1>
     <header>
+      <div>
+        <h1>Pagamentos</h1>
+      </div>
+
       <nav>
-        <ul>
-          <li><%= link_to 'Taxa de Câmbio', currencies_path %></li>
-          <li><%= link_to 'Cadastrar nova Taxa', new_currency_path %></li>
-        </ul>
+        <% if admin_signed_in? %>
+          <%= current_admin.name %> | 
+          <%= current_admin.email %> |
+          <%= link_to 'Taxa de Câmbio', currencies_path %> |
+          <%= link_to 'Cadastrar nova Taxa', new_currency_path %> |
+          <%= button_to 'Sair', destroy_admin_session_path %>
+        <% else %>
+          <ul>
+            <li>
+              <%= link_to 'Registrar-se', new_admin_registration_path %>
+            </li>
+          </ul>
+        <% end %>
       </nav>
     </header>
+    
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>

@@ -3,7 +3,9 @@ require 'rails_helper'
 describe 'Administrador cadastra uma taxa de câmbio' do
   it 'a partir da tela inicial' do
     # Adicionar administrador assim que a feature dele estiver pronta
+    admin = create(:admin)
 
+    login_as(admin)
     visit root_path
     click_on 'Taxa de Câmbio'
     click_on 'Cadastrar nova Taxa'
