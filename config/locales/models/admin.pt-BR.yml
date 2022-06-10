@@ -1,0 +1,17 @@
+pt-BR:
+  innactive: Inativo
+  active: Ativo
+  pending: Pendente
+  activerecord:
+    models:
+      admin: 
+        one: Administrador
+        other: Administradores
+    attributes:
+      admin:
+        name: Nome completo
+        email: E-mail
+        password: Senha
+        password_confirmation: Confirmação de senha
+        registration_number: CPF
+        status: Status
