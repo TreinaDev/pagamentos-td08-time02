@@ -4,70 +4,47 @@ RSpec.describe Admin, type: :model do
   describe '#valid?' do
     context 'presence' do
       it 'inválido quando nome não for informado' do
-        admin = Admin.new(email: 'admin@userubis.com.br', registration_number: '000.000.222-12', name: '',
-                          password: '12345678')
-
-        expect(admin.valid?).to eq false
+        expect(described_class.new).to validate_presence_of(:name)
       end
 
       it 'inválido quando email não for informado' do
-        admin = Admin.new(email: '', registration_number: '000.000.222-12', name: 'Admin de Solsa',
-                          password: '12345678')
-
-        expect(admin.valid?).to eq false
+        expect(described_class.new).to validate_presence_of(:email)
       end
 
       it 'inválido quando CPF não for informado' do
-        admin = Admin.new(email: 'admin@userubis.com.br', registration_number: '', name: 'Admin de Solsa',
-                          password: '12345678')
-
-        expect(admin.valid?).to eq false
+        expect(described_class.new).to validate_presence_of(:registration_number)
       end
 
-      it 'inválido quando CPF não for informado' do
-        admin = Admin.new(email: 'admin@userubis.com.br', registration_number: '000.000.222-12',
-                          name: 'Admin de Solsa', password: '')
-
-        expect(admin.valid?).to eq false
+      it 'inválido quando senha não for informado' do
+        expect(described_class.new).to validate_presence_of(:password)
       end
     end
 
     context 'format' do
       it "inválido quando o domínio do email não for 'userubis.com.br'" do
-        admin = Admin.new(email: 'admin@email.com.br', registration_number: '000-000-000-22',
-                          name: 'Admin de Solsa', password: '12345678')
+        admin = described_class.new
 
-        expect(admin.valid?).to eq false
+        expect(admin).to allow_value('admin@userubis.com.br').for(:email)
+        expect(admin).not_to allow_value('admin@gmail.com.br').for(:email)
       end
 
       it 'inválido quando o CPF estiver no formato incorreto' do
-        admin = Admin.new(email: 'admin@userubis.com.br', registration_number: '000-0001-0004-2233',
-                          name: 'Admin de Solsa', password: '12345678')
+        admin = described_class.new
 
-        expect(admin.valid?).to eq false
+        expect(admin).to allow_value('111.222.333-44').for(:registration_number)
+        expect(admin).not_to allow_value('1111.2222.333.4').for(:registration_number)
       end
 
       it 'O CPF é cadastrado sem os caracteres especiais' do
-        admin = Admin.create!(email: 'admin@userubis.com.br', registration_number: '000.000.000-22',
-                              name: 'Admin de Solsa', password: '12345678')
+        admin = create(:admin)
 
-        expect(admin.registration_number).to eq '00000000022'
-      end
-    end
-
-    context 'senha' do
-      it 'inválido quando a senha possui menos que oito caracteres' do
-        admin = Admin.new(email: 'admin@userubis.com.br', registration_number: '000.000.000-22',
-                          name: 'Admin de Solsa', password: '1234567')
-
-        expect(admin.valid?).to eq false
+        expect(admin.registration_number).to eq '11122233344'
       end
     end
 
     context 'status do administrador' do
       it 'administrador nasce com status inválido' do
-        admin = Admin.new(email: 'admin@userubis.com.br', registration_number: '000.000.000-22',
-                          name: 'Admin de Solsa', password: '12345678')
+        admin = build(:admin)
 
         expect(admin.status).to eq 'innactive'
       end
