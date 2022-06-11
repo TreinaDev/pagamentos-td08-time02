@@ -5,6 +5,7 @@ RSpec.describe Currency, type: :model do
     context 'presence' do
       it 'inválido quando currency_value não for informado' do
         expect(described_class.new).to validate_presence_of(:currency_value)
+        expect(described_class.new).to validate_presence_of(:status)
       end
     end
 

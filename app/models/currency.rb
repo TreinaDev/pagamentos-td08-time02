@@ -4,7 +4,7 @@ class Currency < ApplicationRecord
   enum status: { active: 0, inactive: 5, pending: 9 }
   before_create :set_latter_currency_inactive
 
-  validates :currency_value, presence: true
+  validates :currency_value, :status, presence: true
   validates :currency_value, numericality: { only_float: true, greater_than: 0}
 
   private
