@@ -3,9 +3,13 @@
 <div>
   <% @currencies.each do |currency| %>
     <div class="<% currency.status %>">
+      <% if currency.pending? %>
+        <p>Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador.</p>
+      <% end %>
       <p>Valor de um Rubi é <%= currency.currency_value %> Reais</p>
       <p>Usuário Responsável: <%= currency.admin.name %></p>
       <p>Status: <%= currency.status %></p>
+      <p>Criado dia: <%= I18n.l(currency.created_at.to_date, format: :default) %></p>
     </div>
   <% end %>
 </div>
