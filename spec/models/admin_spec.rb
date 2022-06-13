@@ -49,5 +49,16 @@ RSpec.describe Admin, type: :model do
         expect(admin.status).to eq 'inactive'
       end
     end
+
+    context 'uniqueness' do
+      it 'inválido quando o CPF já está cadastrado' do
+        create(:admin)
+
+        admin = described_class.new(name: 'Cicrano da Silva', registration_number: '111.222.333-44',
+                                    email: 'admin2@userubis.com.br', password: '12345678')
+
+        expect(admin).not_to validate_uniqueness_of(:registration_number)
+      end
+    end
   end
 end
