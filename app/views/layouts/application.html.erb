@@ -20,8 +20,8 @@
         <% if admin_signed_in? %>
           <%= current_admin.name %> | 
           <%= current_admin.email %> |
-          <%= link_to 'Taxa de Câmbio', currencies_path %> |
-          <%= link_to 'Cadastrar nova Taxa', new_currency_path %> |
+          <%= link_to 'Taxa de Câmbio', admin_backoffice_currencies_path %> |
+          <%= link_to 'Cadastrar nova Taxa', new_admin_backoffice_currency_path %> |
           <%= button_to 'Sair', destroy_admin_session_path %>
         <% else %>
           <ul>
@@ -36,6 +36,8 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

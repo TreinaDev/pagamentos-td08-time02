@@ -1,5 +1,4 @@
-class CurrenciesController < ApplicationController
-  before_action :authenticate_admin!
+class AdminBackoffice::CurrenciesController < AdminBackofficeController
   before_action :admin_active
   before_action :set_inactive_if_3_days_ago
 
@@ -15,24 +14,22 @@ class CurrenciesController < ApplicationController
   def create
     @admin = current_admin
     @currency = Currency.new(params.require(:currency).permit(:currency_value).merge(admin_id: @admin.id))
-    
+
     @currency.save!
-    redirect_to currencies_path, notice: 'Taxa de Câmbio criada com sucesso.'
+    redirect_to admin_backoffice_currencies_path, notice: 'Taxa de Câmbio criada com sucesso.'
   end
 
-  private 
+  private
 
   def admin_active
     @admin = current_admin
-    if !@admin.active?
+    unless @admin.active?
       redirect_to root_path, notice: 'Você não tem acesso ao sistema. Aguarde a liberação para acessar a página.'
     end
   end
 
-  def set_inactive_if_3_days_ago 
+  def set_inactive_if_3_days_ago
     @currency = Currency.last
-    if !@currency.nil? && @currency.created_at.to_date < 3.days.ago
-      @currency.inactive!
-    end
+    @currency.inactive! if !@currency.nil? && @currency.created_at.to_date < 3.days.ago
   end
 end

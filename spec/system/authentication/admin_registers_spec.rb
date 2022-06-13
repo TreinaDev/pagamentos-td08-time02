@@ -13,13 +13,7 @@ describe 'Administrador faz login' do
     click_on 'Cadastrar'
 
     expect(page).to have_current_path root_path
-    expect(page).to have_content 'Bem vindo! Você realizou seu registro com sucesso.'
-    expect(page).to have_content 'Aguarde a aprovação para poder usar a plataforma'
-    within('header') do
-      expect(page).to have_content 'admin@userubis.com.br'
-      expect(page).to have_content 'Admin de Sousa'
-      expect(page).to have_button 'Sair'
-    end
+    expect(page).to have_content 'Você se inscreveu com sucesso, porém nós não podemos autenticá-lo porque sua conta ainda não foi ativada.'
   end
 
   it 'com dados incompletos' do
