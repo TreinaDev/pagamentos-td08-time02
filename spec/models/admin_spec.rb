@@ -46,7 +46,7 @@ RSpec.describe Admin, type: :model do
       it 'administrador nasce com status inválido' do
         admin = build(:admin)
 
-        expect(admin.status).to eq 'innactive'
+        expect(admin.status).to eq 'inactive'
       end
     end
   end

@@ -29,13 +29,35 @@ describe 'Administrador vê lista de administradores pendentes' do
     active_admin = Admin.create!(name: 'Fulano da Silva', email: 'admin2@userubis.com.br',
                                  password: '12345678', registration_number: '123.456.789-00',
                                  status: :active)
-    admin = create(:admin)
+
+    admin = Admin.create(name: 'Beltrano da Silva', email: 'admin@userubis.com.br', password: '12345678',
+                         registration_number: '000.000.000-00')
 
     login_as active_admin
     visit root_path
     click_on 'Requisições de aprovação'
     click_on 'Aprovar'
 
-    # expect(admin.status).to eq 'pending'   -> quebrado
+    admin.reload
+
+    expect(admin.status).to eq 'pending'
+  end
+
+  it 'e é o segundo a aceitar' do
+    active_admin = Admin.create!(name: 'Fulano da Silva', email: 'admin2@userubis.com.br',
+                                 password: '12345678', registration_number: '123.456.789-00',
+                                 status: :active)
+
+    admin = Admin.create(name: 'Beltrano da Silva', email: 'admin@userubis.com.br', password: '12345678',
+                         registration_number: '000.000.000-00', status: :pending)
+
+    login_as active_admin
+    visit root_path
+    click_on 'Requisições de aprovação'
+    click_on 'Aprovar'
+
+    admin.reload
+
+    expect(admin.status).to eq 'active'
   end
 end
