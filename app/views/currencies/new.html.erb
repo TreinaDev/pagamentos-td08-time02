@@ -1,0 +1,7 @@
+<h3>Nova taxa de câmbio</h3>
+
+<%= form_with(model: @currency) do |form| %>
+  <%= form.label :currency_value, 'Valor de um Rubi em Reais' %>
+  <%= form.number_field :currency_value, step: :any %>
+  <%= form.submit 'Salvar' %>
+<% end %>

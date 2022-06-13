@@ -20,6 +20,8 @@
         <% if admin_signed_in? %>
           <%= current_admin.name %> | 
           <%= current_admin.email %> |
+          <%= link_to 'Taxa de Câmbio', currencies_path %> |
+          <%= link_to 'Cadastrar nova Taxa', new_currency_path %> |
           <%= button_to 'Sair', destroy_admin_session_path %>
         <% else %>
           <ul>

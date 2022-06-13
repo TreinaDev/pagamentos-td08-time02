@@ -1,6 +1,6 @@
 class Admin < ApplicationRecord
   before_create :remove_caracteres
-
+  has_many :currencies
   enum :status, { innactive: 0, pending: 1, active: 3 }
 
   devise :database_authenticatable, :registerable,

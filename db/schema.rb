@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_09_191216) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_10_203808) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -26,4 +26,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_09_191216) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "currencies", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.float "currency_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "admin_id", null: false
+    t.index ["admin_id"], name: "index_currencies_on_admin_id"
+  end
+
+  add_foreign_key "currencies", "admins"
 end
