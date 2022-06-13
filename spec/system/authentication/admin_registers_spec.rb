@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Administrador faz login' do
+describe 'Administrador faz cadastro' do
   it 'com sucesso' do
     visit root_path
     click_on 'Registrar-se'

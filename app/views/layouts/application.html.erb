@@ -15,20 +15,16 @@
       <div>
         <h1>Pagamentos</h1>
       </div>
-
       <nav>
         <% if admin_signed_in? %>
           <%= current_admin.name %> | 
           <%= current_admin.email %> |
           <%= link_to 'Taxa de Câmbio', admin_backoffice_currencies_path %> |
           <%= link_to 'Cadastrar nova Taxa', new_admin_backoffice_currency_path %> |
-          <%= button_to 'Sair', destroy_admin_session_path %>
-        <% else %>
-          <ul>
-            <li>
-              <%= link_to 'Registrar-se', new_admin_registration_path %>
-            </li>
-          </ul>
+          <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
+        <% else %> 
+          <%= link_to 'Entrar', new_admin_session_path %> |
+          <%= link_to 'Registrar-se', new_admin_registration_path %>
         <% end %>
       </nav>
     </header>
