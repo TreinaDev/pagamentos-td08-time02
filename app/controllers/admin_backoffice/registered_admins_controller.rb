@@ -1,15 +1,29 @@
 class AdminBackoffice::RegisteredAdminsController < AdminBackofficeController
+  before_action :set_admin, only: %i[approve refuse]
+  
   def approval
     @pending_admins = Admin.search_pending_admins
   end
 
   def approve
-    admin = Admin.find(params[:id])
-    admin.inactive? ? admin.pending! : admin.active!
+    if @admin.inactive?
+      @admin.pending!
+      @admin.update(admin_id: current_admin.id)
+    else
+      @admin.active!
+    end
+
+    redirect_to admin_backoffice_admins_pendentes_path
   end
 
   def refuse
-    admin = Admin.find(params[:id])
-    admin.refused!
+    @admin.refused!
+    redirect_to admin_backoffice_admins_pendentes_path
+  end
+
+  private
+
+  def set_admin
+    @admin = Admin.find(params[:id])
   end
 end
