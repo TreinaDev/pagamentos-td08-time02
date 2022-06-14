@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace(:admin_backoffice) do
-    resources :currencies, only: %i[index create new]
+    resources :currencies, only: %i[index create new]do 
+      post 'approve', on: :member
+    end
+    
     get '/pending_admins', to: 'registered_admins#approval'
     resources :registered_admins do
       post 'approve', on: :member
