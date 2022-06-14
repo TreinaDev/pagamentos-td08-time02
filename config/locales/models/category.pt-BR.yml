@@ -1,0 +1,9 @@
+pt-BR:
+  success: Categoria adicionada com sucesso.
+  activerecord:
+    models:
+      category: Categoria
+    attributes:
+      category:
+        name: Nome da categoria
+        discount: Taxa fixa de desconto

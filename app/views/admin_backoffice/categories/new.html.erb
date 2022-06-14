@@ -1,0 +1,15 @@
+<h3>Cadastre nova categoria</h3>
+
+<%= form_with(model: [:admin_backoffice, @category]) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :discount %>
+    <%= form.text_field :discount, placeholder: 'Caso o campo fique em branco o valor será 0' %>
+  </div>
+  <div>
+    <%= form.submit 'Registrar' %>
+  <div>
+<% end %>
