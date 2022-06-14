@@ -91,7 +91,7 @@ describe 'Administrador vê lista de administradores pendentes' do
     expect(admin.status).to eq 'refused'
   end
 
-  it 'e não vê nada se não estiver logado e/ou ativo' do
+  it 'e não vê nada se não estiver logado' do
     visit admin_backoffice_pending_admins_path
 
     expect(page).to have_current_path(new_admin_session_path)

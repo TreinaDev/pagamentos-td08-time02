@@ -52,12 +52,12 @@ RSpec.describe Admin, type: :model do
 
     context 'uniqueness' do
       it 'inválido quando o CPF já está cadastrado' do
-        create(:admin)
+        create(:admin, registration_number: '111.222.333-44')
 
-        admin = described_class.new(name: 'Cicrano da Silva', registration_number: '111.222.333-44',
-                                    email: 'admin2@userubis.com.br', password: '12345678')
+        admin = described_class.new(name: 'Cicrano da Silva', registration_number: '11122233344',
+                                    email: 'admin5@userubis.com.br', password: '12345678')
 
-        expect(admin).not_to validate_uniqueness_of(:registration_number)
+        expect(admin.valid?).to be false
       end
     end
   end

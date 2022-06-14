@@ -2,7 +2,7 @@ class AdminBackoffice::RegisteredAdminsController < AdminBackofficeController
   before_action :set_admin, only: %i[approve refuse]
   
   def approval
-    @pending_admins = Admin.search_pending_admins
+    @pending_admins = Admin.search_not_approved
   end
 
   def approve
