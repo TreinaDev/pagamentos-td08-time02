@@ -1,3 +1,3 @@
 <% if admin_signed_in? %>
-  <p>Aguarde a aprovação para poder usar a plataforma</p>
+  <%= link_to 'Requisições de aprovação', admin_backoffice_pending_admins_path %>
 <% end %>

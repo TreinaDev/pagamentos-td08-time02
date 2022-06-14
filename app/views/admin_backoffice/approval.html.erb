@@ -1,0 +1,25 @@
+<h2>Listagem de Administradores Pendentes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pending_admins.each do |admin| %>
+      <tr>
+        <td><%= admin.name %></td>
+        <td><%= admin.email %></td>
+        <td>
+          <% unless admin.admin_id == current_admin.id %>
+            <%= button_to 'Aprovar', approve_admin_backoffice_registered_admin_path(admin.id), method: :post %>
+            <%= button_to 'Recusar', refuse_admin_backoffice_registered_admin_path(admin.id), method: :post %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
