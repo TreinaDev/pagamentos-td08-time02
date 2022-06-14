@@ -13,12 +13,12 @@ class AdminBackoffice::RegisteredAdminsController < AdminBackofficeController
       @admin.active!
     end
 
-    redirect_to admin_backoffice_admins_pendentes_path
+    redirect_to admin_backoffice_pending_admins_path
   end
 
   def refuse
     @admin.refused!
-    redirect_to admin_backoffice_admins_pendentes_path
+    redirect_to admin_backoffice_pending_admins_path
   end
 
   private

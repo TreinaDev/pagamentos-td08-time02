@@ -49,9 +49,9 @@ describe 'Administrador vê lista de administradores pendentes' do
     admin = create(:admin)
 
     login_as(active_admin)
-    visit admin_backoffice_admins_pendentes_path
+    visit admin_backoffice_pending_admins_path
     click_on 'Aprovar'
-    expect(page).to have_current_path(admin_backoffice_admins_pendentes_path)
+    expect(page).to have_current_path(admin_backoffice_pending_admins_path)
     expect(page).not_to have_button('Aprovar')
     expect(page).not_to have_button('Recusar')
   end
@@ -89,5 +89,12 @@ describe 'Administrador vê lista de administradores pendentes' do
     admin.reload
 
     expect(admin.status).to eq 'refused'
+  end
+
+  it 'e não vê nada se não estiver logado e/ou ativo' do
+    visit admin_backoffice_pending_admins_path
+
+    expect(page).to have_current_path(new_admin_session_path)
+    expect(page).to have_content('Para continuar, faça login ou registre-se.')
   end
 end
