@@ -24,5 +24,11 @@ RSpec.describe Category, type: :model do
         expect(described_class.new).to validate_numericality_of(:discount).is_greater_than_or_equal_to(0)
       end
     end
+
+    context 'uniqueness' do
+      it 'nome da categoria é único' do
+        expect(described_class.new).to validate_uniqueness_of(:name)
+      end
+    end
   end
 end

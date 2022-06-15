@@ -38,4 +38,23 @@ describe 'Administrador edita uma categoria existente' do
     expect(page).to have_content('Não foi possível atualizar a categoria.')
     expect(page).to have_content('Nome da categoria não pode ficar em branco')
   end
+
+  it 'nome da categoria duplicada' do
+    admin = create(:admin, status: :active)
+    category = create(:category)
+    other_category = create(:category, name: 'Não VIP')
+
+    login_as(admin)
+    visit root_path
+    click_on 'Categorias'
+    within(".#{other_category.name.parameterize.underscore}") do
+      click_on 'Editar'
+    end
+    fill_in 'Nome da categoria', with: 'VIP'
+    fill_in 'Taxa fixa de desconto', with: 30
+    click_on 'Salvar'
+
+    expect(page).to have_content('Não foi possível atualizar a categoria.')
+    expect(page).to have_content('Nome da categoria já está em uso')
+  end
 end
