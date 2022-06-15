@@ -9,7 +9,10 @@
     <p>Não há categorias cadastradas</p>
   <% end %>
   <% @categories.each do |category| %>
-    <p>Categoria: <%= category.name %></p>
-    <p>Taxa de Desconto: <%= category.discount %>%</p>
+    <div class="<%= category.name.parameterize.underscore %>">
+      <p>Categoria: <%= category.name %></p>
+      <p>Taxa de Desconto: <%= category.discount %>%</p>
+      <%= link_to I18n.t(:edit), edit_admin_backoffice_category_path(category.id) %>
+    </div>
   <% end %>
 </div>

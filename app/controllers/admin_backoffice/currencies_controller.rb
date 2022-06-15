@@ -15,7 +15,7 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
     @admin = current_admin
     @currency = Currency.new(params.require(:currency).permit(:currency_value).merge(admin_id: @admin.id))
 
-    @currency.save!
+    @currency.save
     redirect_to admin_backoffice_currencies_path, notice: 'Taxa de Câmbio criada com sucesso.'
   end
 

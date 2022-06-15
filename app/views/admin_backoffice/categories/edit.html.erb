@@ -1,4 +1,4 @@
-<h3>Cadastre nova categoria</h3>
+<h3>Editar <%= @category.name %></h3>
 
 <% if @category.errors.any? %>
   <p>Verifique os erros abaixo</p>
@@ -19,6 +19,6 @@
     <%= form.number_field :discount %>
   </div>
   <div>
-    <%= form.submit 'Registrar' %>
+    <%= form.submit 'Salvar' %>
   <div>
 <% end %>

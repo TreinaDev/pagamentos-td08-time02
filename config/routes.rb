@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   namespace(:admin_backoffice) do
     resources :currencies, only: %i[index create new]
-    resources :categories, only: %i[index create new]
+    resources :categories, only: %i[index create new edit update]
 
     get '/pending_admins', to: 'registered_admins#approval'
 
