@@ -9,11 +9,13 @@ class Admin < ApplicationRecord
   validates :name, :registration_number, presence: true
   validates :email, format: { with: /\A[^@\s]+@userubis.com.br\z/ }
   validates :registration_number, format: { with: /\A[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}\z/ }
+  validates :registration_number, uniqueness: true
+
   # validar cpf como unico
 
   # scopes
 
-  scope :search_pending_admins, -> { where.not(status: %i[active refused]) }
+  scope :search_not_approved, -> { where.not(status: %i[active refused]) }
 
   def active_for_authentication?
     super && active?

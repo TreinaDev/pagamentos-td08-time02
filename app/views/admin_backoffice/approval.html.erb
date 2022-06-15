@@ -14,8 +14,10 @@
         <td><%= admin.name %></td>
         <td><%= admin.email %></td>
         <td>
-          <%= button_to 'Aprovar', approve_admin_backoffice_registered_admin_path(admin.id), method: :post %>
-          <%= button_to 'Recusar', refuse_admin_backoffice_registered_admin_path(admin.id), method: :post %>
+          <% unless admin.admin_id == current_admin.id %>
+            <%= button_to 'Aprovar', approve_admin_backoffice_registered_admin_path(admin.id), method: :post %>
+            <%= button_to 'Recusar', refuse_admin_backoffice_registered_admin_path(admin.id), method: :post %>
+          <% end %>
         </td>
       </tr>
     <% end %>

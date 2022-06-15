@@ -1,5 +1,5 @@
 class AdminBackoffice::CurrenciesController < AdminBackofficeController
-  before_action :admin_active
+  before_action :authorize_active_admin
   before_action :set_inactive_if_3_days_ago
 
   def index
@@ -21,9 +21,8 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
 
   private
 
-  def admin_active
-    @admin = current_admin
-    unless @admin.active?
+  def authorize_active_admin
+    unless current_admin.active?
       redirect_to root_path, notice: 'Você não tem acesso ao sistema. Aguarde a liberação para acessar a página.'
     end
   end
