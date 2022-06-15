@@ -22,7 +22,7 @@ describe 'Administrador cadastra uma taxa de câmbio' do
   it 'e vê lista de taxas de câmbio cadastradas' do
     admin = create(:admin)
     admin.active!
-    currency = create(:currency)
+    create(:currency)
 
     login_as(admin)
     visit root_path
@@ -57,7 +57,7 @@ describe 'Administrador cadastra uma taxa de câmbio' do
   it 'se for 10% maior que a taxa anterior, status fica pendente e espera aprovação' do
     admin = create(:admin)
     admin.active!
-    currency = create(:currency)
+    create(:currency)
 
     login_as(admin)
     visit(root_path)
