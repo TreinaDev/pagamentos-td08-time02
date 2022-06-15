@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Admin.create(name: 'Fulano da Silva', password: '12345678', email: 'admin@userubis.com.br',
-             registration_number: '123.456.789-00', status: :active)
-Admin.create(name: 'Beltrano da Silva', password: '12345678', email: 'admin2@userubis.com.br',
-             registration_number: '321.456.789-00', status: :active)
+admin_ativo = Admin.create(name: 'Admin Genérico', email: 'admin@userubis.com.br', password: 'password', registration_number: '111.222.333-44', status: :active)
+admin_ativo_2 = Admin.create(name: 'Admin de Marca', email: 'admin2@userubis.com.br', password: 'password', registration_number: '222.442.333-44', status: :active)
+

@@ -21,6 +21,7 @@
           <%= current_admin.email %> |
           <%= link_to 'Taxa de Câmbio', admin_backoffice_currencies_path %> |
           <%= link_to 'Cadastrar nova Taxa', new_admin_backoffice_currency_path %> |
+          <%= link_to 'Categorias',  admin_backoffice_categories_path %> |
           <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
         <% else %> 
           <%= link_to 'Entrar', new_admin_session_path %> |

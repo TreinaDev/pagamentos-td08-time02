@@ -1,0 +1,18 @@
+<h3>Categorias Cadastradas</h3>
+
+<div class="links">
+  <%= link_to 'Adicionar nova categoria', new_admin_backoffice_category_path %>
+</div>
+
+<div>
+  <% if @categories.empty? %>
+    <p>Não há categorias cadastradas</p>
+  <% end %>
+  <% @categories.each do |category| %>
+    <div class="<%= category.name.parameterize.underscore %>">
+      <p>Categoria: <%= category.name %></p>
+      <p>Taxa de Desconto: <%= category.discount %>%</p>
+      <%= link_to I18n.t(:edit), edit_admin_backoffice_category_path(category.id) %>
+    </div>
+  <% end %>
+</div>
