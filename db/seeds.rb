@@ -8,3 +8,4 @@
 
 admin_ativo = Admin.create(name: 'Admin Genérico', email: 'admin@userubis.com.br', password: 'password', registration_number: '111.222.333-44', status: :active)
 admin_ativo_2 = Admin.create(name: 'Admin de Marca', email: 'admin2@userubis.com.br', password: 'password', registration_number: '222.442.333-44', status: :active)
+

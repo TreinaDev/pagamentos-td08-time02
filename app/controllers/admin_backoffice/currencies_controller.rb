@@ -19,6 +19,20 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
     redirect_to admin_backoffice_currencies_path, notice: 'Taxa de Câmbio criada com sucesso.'
   end
 
+  def approve
+    @currency = Currency.find(params[:id])
+
+    if current_admin.id == @currency.admin_id
+      redirect_to admin_backoffice_currencies_path,
+                  notice: 'Você não pode aprovar essa taxa, solicite a outro administrador.'
+    else
+      @currency.active!
+      @currencies = Currency.last(2)
+      @currencies.first.inactive!
+      redirect_to admin_backoffice_currencies_path, notice: 'Taxa aprovada com sucesso!'
+    end
+  end
+
   private
 
   def authorize_active_admin
