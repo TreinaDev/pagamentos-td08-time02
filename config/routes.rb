@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
 
     get '/pending_admins', to: 'registered_admins#approval'
+    resources :bonus_conversions, only: %i[index new create]
     resources :registered_admins do
       post 'approve', on: :member
       post 'refuse', on: :member

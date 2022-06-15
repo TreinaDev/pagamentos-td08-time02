@@ -1,0 +1,29 @@
+<h2>Nova conversão Bônus</h2>
+
+<%= form_with(model: [:admin_backoffice, @bonus_conversion]) do |f| %>
+  <div>
+    <%= f.label :initial_date %>
+    <%= f.date_field :initial_date %>
+  </div>
+
+  <div>
+    <%= f.label :final_date %>
+    <%= f.date_field :final_date %>
+  </div>
+
+  <div>
+    <%= f.label :percentage %>
+    <%= f.number_field :percentage %>
+  </div>
+
+  <div>
+    <%= f.label :deadline %>
+    <%= f.number_field :deadline %>
+  </div>
+
+  <div>
+    <%= f.submit "Cadastrar Conversão Bônus" %>
+  </div>
+<% end %>
+
+<%= link_to 'Voltar', admin_backoffice_bonus_conversions_path %>

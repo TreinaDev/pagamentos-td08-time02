@@ -1,0 +1,29 @@
+<h2>Convesões Bônus</h2>
+
+<%= link_to 'Cadastrar nova conversão bônus',  new_admin_backoffice_bonus_conversion_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data inicial</th>
+      <th>Data final</th>
+      <th>Percentual bônus</th>
+      <th>Prazo para uso (dias)</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bonus_conversions.each do |bonus| %>
+      <tr>
+        <td> <%= I18n.l bonus.initial_date, format: :date %> </td>
+        <td> <%= I18n.l bonus.final_date, format: :date %> </td>
+        <td> <%= format_percentage(bonus.percentage) %> </td>
+        <td> <%= bonus.deadline %> </td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Voltar', root_path %>
