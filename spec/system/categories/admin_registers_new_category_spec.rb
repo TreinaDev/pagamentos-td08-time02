@@ -33,4 +33,28 @@ describe 'Administrador cadastra categoria de cliente nova' do
     expect(page).to have_content('Verifique os erros abaixo')
     expect(page).to have_content('Nome da categoria não pode ficar em branco')
   end
+
+  it 'enquanto seu status está pendente' do
+    admin = create(:admin, status: :pending)
+
+    login_as(admin)
+    visit new_admin_backoffice_category_path
+
+    expect(page).to have_current_path(new_admin_session_path)
+  end
+
+  it 'enquanto seu status está inativo' do
+    admin = create(:admin, status: :inactive)
+
+    login_as(admin)
+    visit new_admin_backoffice_category_path
+
+    expect(page).to have_current_path(new_admin_session_path)
+  end
+  
+  it 'e não está logado' do
+    visit new_admin_backoffice_category_path
+
+    expect(page).to have_current_path(new_admin_session_path)
+  end
 end

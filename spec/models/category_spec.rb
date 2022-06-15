@@ -13,7 +13,7 @@ RSpec.describe Category, type: :model do
     end
 
     context 'length' do
-      it 'nome tem pelo menos 5 letras' do
+      it 'nome tem pelo menos 3 letras' do
         expect(described_class.new).to validate_length_of(:name).is_at_least(3)
       end
     end

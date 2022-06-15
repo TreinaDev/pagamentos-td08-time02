@@ -57,4 +57,34 @@ describe 'Administrador edita uma categoria existente' do
     expect(page).to have_content('Não foi possível atualizar a categoria.')
     expect(page).to have_content('Nome da categoria já está em uso')
   end
+
+  it 'enquanto o seu status é inativo' do
+    admin = create(:admin, status: :inactive)
+    category = create(:category)
+    other_category = create(:category, name: 'Outra Categoria')
+
+    login_as(admin)
+    visit edit_admin_backoffice_category_path(category.id)
+
+    expect(page).to have_current_path(new_admin_session_path)
+  end
+
+  it 'enquanto o seu status é pendente' do
+    admin = create(:admin, status: :pending)
+    category = create(:category)
+    other_category = create(:category, name: 'Outra Categoria')
+
+    login_as(admin)
+    visit edit_admin_backoffice_category_path(category.id)
+
+    expect(page).to have_current_path(new_admin_session_path)
+  end
+
+  it 'e não está logado' do
+    category = create(:category)
+
+    visit edit_admin_backoffice_category_path(category.id)
+
+    expect(page).to have_current_path(new_admin_session_path)
+  end
 end
