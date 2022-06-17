@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Administrador clica em conversão bônus' do
-  it 'e não há nenhuma conversão bônus cadastrado' do
+  it 'e não há nenhuma conversão bônus cadastrada' do
     admin = create(:admin, status: :active)
     login_as(admin)
     visit admin_backoffice_bonus_conversions_path
@@ -10,7 +10,7 @@ describe 'Administrador clica em conversão bônus' do
     expect(page).not_to have_css 'table'
   end
 
-  it 'e não preenche campos necessários' do
+  it 'e não preenche campos necessários ao cadastrar uma nova conversão bônus' do
     admin = create(:admin, status: :active)
     login_as(admin)
 
@@ -19,12 +19,12 @@ describe 'Administrador clica em conversão bônus' do
     fill_in('Prazo', with: 5)
     click_on('Cadastrar Conversão Bônus')
 
-    expect(page).to have_content('Verifique os erros abaixo:') 
+    expect(page).to have_content('Verifique os erros abaixo:')
     expect(page).to have_content('Data final não pode ficar em branco')
     expect(page).to have_content(' Percentual bônus não pode ficar em branco')
   end
 
-  it 'e efetua um novo cadastro' do
+  it 'e efetua um novo cadastro com sucesso' do
     admin = create(:admin, status: :active)
 
     login_as(admin)
