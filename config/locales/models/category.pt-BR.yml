@@ -1,0 +1,13 @@
+pt-BR:
+  create_success: Categoria adicionada com sucesso.
+  create_fail: Não foi possível criar a categoria.
+  update_success: Categoria adicionada com sucesso.
+  update_fail: Não foi possível atualizar a categoria.
+  edit: Editar
+  activerecord:
+    models:
+      category: Categoria
+    attributes:
+      category:
+        name: Nome da categoria
+        discount: Taxa fixa de desconto

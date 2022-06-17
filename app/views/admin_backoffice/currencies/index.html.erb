@@ -2,9 +2,10 @@
 
 <div>
   <% @currencies.each do |currency| %>
-    <div class="<% currency.status %>">
+    <div class="<% currency.status %>" style="border: 2px solid #000; margin: 10px 0; padding: 10px">
       <% if currency.pending? %>
         <p>Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador.</p>
+        <%= button_to 'Aprovar taxa', approve_admin_backoffice_currency_path(currency) %>
       <% end %>
       <p>Valor de um Rubi é <%= currency.currency_value %> Reais</p>
       <p>Usuário Responsável: <%= currency.admin.name %></p>
