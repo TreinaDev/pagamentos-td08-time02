@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     resources :currencies, only: %i[index create new] do
       post 'approve', on: :member
     end
-
+    resources :categories, only: %i[index create new edit update]
     get '/pending_admins', to: 'registered_admins#approval'
+
     resources :bonus_conversions, only: %i[index new create]
     resources :registered_admins do
       post 'approve', on: :member
