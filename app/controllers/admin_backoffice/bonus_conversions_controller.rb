@@ -8,7 +8,8 @@ class AdminBackoffice::BonusConversionsController < AdminBackofficeController
   end
 
   def create
-    if BonusConversion.create(bonus_conversion_params)
+    @bonus_conversion = BonusConversion.new(bonus_conversion_params)
+    if @bonus_conversion.save
       redirect_to admin_backoffice_bonus_conversions_path,
                   notice: 'Conversão bônus cadastrada com sucesso!'
     else

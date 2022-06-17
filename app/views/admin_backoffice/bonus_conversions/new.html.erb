@@ -1,5 +1,16 @@
 <h2>Nova conversão Bônus</h2>
 
+
+<% if @bonus_conversion.errors.any? %>
+    <p>Verifique os erros abaixo:</p>
+    <ul>
+      <% @bonus_conversion.errors.full_messages.each do |message| %>
+        <li> <%= message %> </li>
+      <% end %>
+    </ul>
+<% end %>
+
+
 <%= form_with(model: [:admin_backoffice, @bonus_conversion]) do |f| %>
   <div>
     <%= f.label :initial_date %>
