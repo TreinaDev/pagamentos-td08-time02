@@ -72,4 +72,18 @@ describe 'Administrador cadastra uma taxa de câmbio' do
     expect(page).to have_content 'Usuário Responsável: Admin de Solza'
     expect(page).to have_content 'Status: pending'
   end
+
+  it 'e cria uma taxa enquanto outra estiver pendente' do
+    admin = create(:admin)
+    admin.active!
+    create(:currency)
+    create(:currency, currency_value: 3)
+
+    login_as(admin)
+    visit root_path
+    click_on 'Taxa de Câmbio'
+
+    expect(page).not_to have_link 'Cadastrar nova Taxa'
+    expect(page).to have_content 'Status: pending'
+  end
 end

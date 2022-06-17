@@ -18,10 +18,13 @@ class Currency < ApplicationRecord
     end
   end
 
-  def set_pending 
-    @currency = Currency.last(2)
-    if !@currency[1].nil? && (@currency[0].currency_value + @currency[0].currency_value * 0.1) < @currency[1].currency_value
-      self.pending!
+  def set_pending
+    if Currency.all.count >= 2
+      @currencies = Currency.last(2)
+      if (@currencies[0].currency_value + @currencies[0].currency_value * 0.1) < @currencies[1].currency_value
+        self.pending!
+        @currencies[0].active!
+      end
     end
   end
 end
