@@ -22,11 +22,11 @@ RSpec.describe Currency, type: :model do
 
   describe '#set_pending' do
     it 'status é pending se a taxa criada for maior que 10% a anterior' do
-      admin = create(:admin)
-      first_currency = create(:currency)
-      second_currency = Currency.create!(currency_value: 1.66, admin: admin)
+      create(:admin)
+      create(:currency)
+      second_currency = described_class.create!(currency_value: 1.66, admin: Admin.first)
 
-      expect(second_currency.pending?).to eq true
+      expect(second_currency.pending?).to be true
     end
   end
 end

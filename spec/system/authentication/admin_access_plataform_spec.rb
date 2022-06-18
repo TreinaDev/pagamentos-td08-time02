@@ -17,6 +17,7 @@ describe 'Administrador ativo acessa a plataforma' do
     end
 
     expect(page).to have_current_path root_path
+    expect(page).to have_link('Pagamentos')
   end
 
   it 'e faz logout' do
