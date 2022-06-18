@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  namespace(:admin_backoffice) do
+  namespace :admin_backoffice do
     resources :currencies, only: %i[index create new] do
       post 'approve', on: :member
     end
@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     resources :registered_admins do
       post 'approve', on: :member
       post 'refuse', on: :member
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      get 'current_rate', to: 'exchanges_rate#current_rate'
     end
   end
 end

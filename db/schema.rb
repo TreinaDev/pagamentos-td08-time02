@@ -28,7 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_201631) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-
   create_table "bonus_conversions", force: :cascade do |t|
     t.datetime "initial_date"
     t.datetime "final_date"
@@ -38,7 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_201631) do
     t.datetime "updated_at", null: false
     t.integer "deadline"
     t.index ["admin_id"], name: "index_bonus_conversions_on_admin_id"
-    
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "discount", default: 0
