@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      client_wallet: 
+        one: Carteira do Cliente
+        other: Carteiras dos Clientes
+    attributes:
+      client_wallet:
+        id: ID
+        registered_number: CPF ou CNPJ
+        email: E-mail
+        balance: Saldo
+        bonus_balance: Saldo Bônus
+        category: Categoria
+        category_id: Categoria

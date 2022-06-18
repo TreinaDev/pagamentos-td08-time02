@@ -25,6 +25,7 @@
           <% end %>
           <%= link_to 'Conversões Bônus', admin_backoffice_bonus_conversions_path %> |
           <%= link_to 'Categorias',  admin_backoffice_categories_path %> |
+          <%= link_to 'Carteiras de Clientes', admin_backoffice_client_wallets_path %>
           <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
         <% else %> 
           <%= link_to 'Entrar', new_admin_session_path %> |

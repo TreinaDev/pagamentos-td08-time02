@@ -1,0 +1,11 @@
+<h3>Carteiras de Clientes</h3>
+
+<% if @client_wallets.empty? %>
+  <p>Ainda não há nenhuma carteira de cliente cadastrada.</p>
+<% else %>
+  <% @client_wallets.each do |wallet| %>
+    <p>CPF ou CNPJ: <%= link_to wallet.registered_number, admin_backoffice_client_wallet_path(wallet.id) %></p>
+    <p>E-mail: <%= wallet.email %></p> 
+    <p>Categoria: <%= wallet.category.name %></p> 
+  <% end %>
+<% end %>
