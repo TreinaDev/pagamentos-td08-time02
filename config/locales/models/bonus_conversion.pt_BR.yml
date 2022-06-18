@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      bonus_conversion: 
+        one: Conversão Bônus
+        other: Conversões Bônus
+    attributes:
+      bonus_conversion:
+        id: ID
+        initial_date: Data inicial
+        final_date: Data final
+        percentage: Percentual bônus
+        deadline: Prazo para uso (dias)
+        created_at: Criado em 
+        updated_at: Atualizado em
+        admin_id: Administrador

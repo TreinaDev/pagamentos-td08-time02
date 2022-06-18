@@ -23,6 +23,7 @@
           <% if Currency.pending.empty? %>
             <%= link_to 'Cadastrar nova Taxa', new_admin_backoffice_currency_path %> |
           <% end %>
+          <%= link_to 'Conversões Bônus', admin_backoffice_bonus_conversions_path %> |
           <%= link_to 'Categorias',  admin_backoffice_categories_path %> |
           <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
         <% else %> 
