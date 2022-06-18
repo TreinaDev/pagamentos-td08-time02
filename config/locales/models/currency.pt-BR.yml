@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      currency: 
+        one: Taxa de Câmbio
+        other: Taxas de Câmbio
+    attributes:
+      currency:
+        id: ID
+        currency_value: Valor de um Rubi em Reais
+        admin_id: Administrador
