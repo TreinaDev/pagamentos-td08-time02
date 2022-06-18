@@ -1,6 +1,7 @@
 class AdminBackoffice::CurrenciesController < AdminBackofficeController
   before_action :authorize_active_admin
   before_action :set_inactive_if_3_days_ago
+  before_action :check_pending, only: [:new, :create]
 
   def index
     @currencies = Currency.all.order(created_at: :desc)
@@ -42,7 +43,15 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
   end
 
   def set_inactive_if_3_days_ago
-    @currency = Currency.last
-    @currency.inactive! if !@currency.nil? && @currency.created_at.to_date < 3.days.ago
+    @currencies = Currency.active
+    @currencies.each do |currency|
+      currency.inactive! if !currency.nil? && currency.created_at.to_date < 3.days.ago
+    end
+  end
+
+  def check_pending
+    if Currency.pending.any?
+      redirect_to admin_backoffice_currencies_path, notice: 'Não pode ser criada nova taxa enquanto tiver uma pendente.'
+    end
   end
 end

@@ -13,15 +13,17 @@
   <body>
     <header>
       <div>
-        <h1>Pagamentos</h1>
+        <h1><%= link_to 'Pagamentos', root_path %></h1>
       </div>
       <nav>
         <% if admin_signed_in? %>
           <%= current_admin.name %> | 
           <%= current_admin.email %> |
           <%= link_to 'Taxa de Câmbio', admin_backoffice_currencies_path %> |
-          <%= link_to 'Cadastrar nova Taxa', new_admin_backoffice_currency_path %> |
-          <%= link_to 'Conversões Bônus', admin_backoffice_bonus_conversions_path %>
+          <% if Currency.pending.empty? %>
+            <%= link_to 'Cadastrar nova Taxa', new_admin_backoffice_currency_path %> |
+          <% end %>
+          <%= link_to 'Conversões Bônus', admin_backoffice_bonus_conversions_path %> |
           <%= link_to 'Categorias',  admin_backoffice_categories_path %> |
           <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
         <% else %> 
