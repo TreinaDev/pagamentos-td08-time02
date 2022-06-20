@@ -12,6 +12,9 @@
     <div class="<%= category.name.parameterize.underscore %>">
       <p>Categoria: <%= category.name %></p>
       <p>Taxa de Desconto: <%= category.discount %>%</p>
+      <% unless category.bonus_conversion.nil? %>
+        <p>Conversão Bônus: <%= category.bonus_conversion.percentage %>%</p>
+      <% end %>
       <%= link_to I18n.t(:edit), edit_admin_backoffice_category_path(category.id) %>
     </div>
   <% end %>

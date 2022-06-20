@@ -1,0 +1,19 @@
+<h3>Carteira do cliente <%= @client_wallet.registered_number %></h3>
+
+<dl>
+  <dt>CPF ou CNPJ:</dt>
+  <dd> <%= @client_wallet.registered_number %> </dd>
+  <dt>E-mail:</dt>
+  <dd> <%= @client_wallet.email %> </dd>
+  <dt>Saldo:</dt>
+  <dd> <%= @client_wallet.balance %> </dd>
+  <dt>Saldo Bônus:</dt>
+  <dd> <%= @client_wallet.bonus_balance %> </dd>
+  <%= form_with(model: [:admin_backoffice, @client_wallet]) do |form| %>
+    <div>
+      <%= form.label :category %>
+      <%= form.collection_select :category, @categories.order(:name), :id, :name %>
+    </div>
+    <%= form.submit 'Salvar' %>
+  <% end %>
+</dl>
