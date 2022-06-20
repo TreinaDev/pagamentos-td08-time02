@@ -27,4 +27,11 @@ class Currency < ApplicationRecord
       end
     end
   end
+  
+  def self.set_inactive_if_3_days_ago
+    @currencies = Currency.active
+    @currencies.each do |currency|
+      currency.inactive! if !currency.nil? && currency.created_at.to_date < 3.days.ago
+    end
+  end
 end

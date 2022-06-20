@@ -28,5 +28,14 @@ describe 'Administrador acessa a tela de cliente' do
   end
 
   it 'e vê cliente cadastrado com CNPJ' do
+    create(:admin, status: :active)
+    create(:client_wallet, registered_number: '41.780.304/0001-04')
+
+    login_as(Admin.first)
+    visit root_path
+    click_on 'Carteiras de Clientes'
+
+    expect(page).to have_content 'CPF ou CNPJ: 41.780.304/0001-04'
+    expect(page).to have_link '41.780.304/0001-04'
   end
 end
