@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :bonus_conversion do
-    initial_date { "2022-06-15 16:14:07" }
-    final_date { "2022-06-15 16:14:07" }
+    initial_date { DateTime.now }
+    final_date { 2.days.from_now }
+    deadline { 10 }
     percentage { 1 }
-    admin { nil }
+    admin
   end
 end

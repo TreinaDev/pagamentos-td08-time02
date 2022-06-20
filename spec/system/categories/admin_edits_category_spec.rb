@@ -14,7 +14,7 @@ describe 'Administrador edita uma categoria existente' do
     end
     fill_in 'Nome da categoria', with: 'Super VIP'
     fill_in 'Taxa fixa de desconto', with: 30
-    click_on 'Salvar'
+    click_on 'Registrar'
 
     expect(page).to have_content('Categoria: Super VIP')
     expect(page).to have_content('Taxa de Desconto: 30%')
@@ -33,7 +33,7 @@ describe 'Administrador edita uma categoria existente' do
     end
     fill_in 'Nome da categoria', with: ''
     fill_in 'Taxa fixa de desconto', with: 30
-    click_on 'Salvar'
+    click_on 'Registrar'
 
     expect(page).to have_content('Não foi possível atualizar a categoria.')
     expect(page).to have_content('Nome da categoria não pode ficar em branco')
@@ -52,7 +52,7 @@ describe 'Administrador edita uma categoria existente' do
     end
     fill_in 'Nome da categoria', with: 'VIP'
     fill_in 'Taxa fixa de desconto', with: 30
-    click_on 'Salvar'
+    click_on 'Registrar'
 
     expect(page).to have_content('Não foi possível atualizar a categoria.')
     expect(page).to have_content('Nome da categoria já está em uso')

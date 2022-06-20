@@ -1,0 +1,18 @@
+<%= form_with(model: [:admin_backoffice, @category]) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :discount %>
+    <%= form.number_field :discount %>
+  </div>
+  <% if !@bonus.empty? %>
+    <div>
+      <%= form.label :bonus_conversion_id %>
+      <%= form.collection_select :bonus_conversion_id, @bonus, :id, :percentage, { include_blank: 'Sem conversão bônus' } %>
+    </div>
+    <div>
+  <% end %>
+  <%= form.submit 'Registrar' %>
+<% end %>

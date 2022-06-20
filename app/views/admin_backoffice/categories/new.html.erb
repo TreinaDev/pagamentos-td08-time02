@@ -9,16 +9,4 @@
   </ul> 
 <% end %>
 
-<%= form_with(model: [:admin_backoffice, @category]) do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :discount %>
-    <%= form.number_field :discount %>
-  </div>
-  <div>
-    <%= form.submit 'Registrar' %>
-  <div>
-<% end %>
+<%= render 'form' %>

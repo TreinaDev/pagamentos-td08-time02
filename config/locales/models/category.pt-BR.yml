@@ -11,3 +11,5 @@ pt-BR:
       category:
         name: Nome da categoria
         discount: Taxa fixa de desconto
+        bonus_conversion: Conversão Bônus
+        bonus_conversion_id: Conversão Bônus

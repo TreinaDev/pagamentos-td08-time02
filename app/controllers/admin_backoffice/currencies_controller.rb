@@ -1,10 +1,10 @@
 class AdminBackoffice::CurrenciesController < AdminBackofficeController
   before_action :authorize_active_admin
-  before_action :set_inactive_if_3_days_ago
   before_action :check_pending, only: [:new, :create]
 
   def index
     @currencies = Currency.all.order(created_at: :desc)
+    Currency.set_inactive_if_3_days_ago
   end
 
   def new
@@ -39,13 +39,6 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
   def authorize_active_admin
     unless current_admin.active?
       redirect_to root_path, notice: 'Você não tem acesso ao sistema. Aguarde a liberação para acessar a página.'
-    end
-  end
-
-  def set_inactive_if_3_days_ago
-    @currencies = Currency.active
-    @currencies.each do |currency|
-      currency.inactive! if !currency.nil? && currency.created_at.to_date < 3.days.ago
     end
   end
 

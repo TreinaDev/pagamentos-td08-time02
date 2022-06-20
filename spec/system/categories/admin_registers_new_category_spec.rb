@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Administrador cadastra categoria de cliente nova' do
   it 'com sucesso' do
     admin = create(:admin, status: :active)
+    create(:bonus_conversion, admin: admin)
 
     login_as(admin)
     visit root_path
@@ -11,12 +12,14 @@ describe 'Administrador cadastra categoria de cliente nova' do
     click_on 'Adicionar nova categoria'
 
     fill_in 'Nome da categoria', with: 'Genérica'
-    fill_in 'Taxa fixa de desconto', with: 3
+    fill_in 'Taxa fixa de desconto', with: 3 
+    select '1', from: 'Conversão Bônus'
     click_on 'Registrar'
 
     expect(page).to have_content('Categoria adicionada com sucesso.')
     expect(page).to have_content('Categoria: Genérica')
     expect(page).to have_content('Taxa de Desconto: 3%')
+    expect(page).to have_content('Conversão Bônus: 1%')
   end
 
   it 'com informações inválidas' do
