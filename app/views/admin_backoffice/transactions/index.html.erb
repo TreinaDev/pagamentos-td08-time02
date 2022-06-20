@@ -1,0 +1,25 @@
+<h2>Transações Realizadas</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Número de Registro</th>
+      <th>Valor</th>
+      <th>Tipo de Transação</th>
+      <th>Taxa no Momento</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td> <%= I18n.t transaction.registered_number %> </td>
+        <td> <%= number_to_currency(transaction.value) %> </td>
+        <td> <%= I18n.t transaction.transaction_type %> </td>
+        <td> <%= I18n.t transaction.currency_rate %> </td>
+      </tr>
+    <% end %>
+    
+  </tbody>
+</table>

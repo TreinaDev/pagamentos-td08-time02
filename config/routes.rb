@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :admin_backoffice do
+    resources :transactions, only: %i[index]
     resources :client_wallets
     resources :currencies, only: %i[index create new] do
       post 'approve', on: :member
