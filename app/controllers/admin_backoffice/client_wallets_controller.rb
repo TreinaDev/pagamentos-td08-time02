@@ -1,4 +1,5 @@
 class AdminBackoffice::ClientWalletsController < ApplicationController
+  
   def index
     @client_wallets = ClientWallet.all 
   end
