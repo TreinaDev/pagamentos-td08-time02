@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_154412) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_20_172509) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -44,6 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_154412) do
     t.integer "discount", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "bonus_conversion_id"
+    t.index ["bonus_conversion_id"], name: "index_categories_on_bonus_conversion_id"
   end
 
   create_table "client_wallets", force: :cascade do |t|
@@ -68,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_154412) do
 
   add_foreign_key "admins", "admins"
   add_foreign_key "bonus_conversions", "admins"
+  add_foreign_key "categories", "bonus_conversions"
   add_foreign_key "client_wallets", "categories"
   add_foreign_key "currencies", "admins"
 end
