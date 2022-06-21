@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'current_rate', to: 'exchanges_rate#current_rate'
-      resources :client_wallets, only: %i[show create]
+      resources :client_wallets, only: %i[create] do
+      end
+      get 'client_wallet/balance', to: 'client_wallets#balance'
     end
   end
 end
