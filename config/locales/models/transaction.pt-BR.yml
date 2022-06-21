@@ -5,11 +5,11 @@ pt-BR:
   credit: Crédito
   activerecord:
     models:
-      admin: 
+      transaction: 
         one: Transação
         other: Transações
     attributes:
-      admin:
+      transaction:
         registered_number: Número de Registro
         value: Valor
         currency_rate: Taxa no Momento
