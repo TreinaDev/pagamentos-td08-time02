@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Aplicação gera uma transação' do
   context 'POST /api/v1/transaction' do
     it 'de débito com sucesso' do
+      create(:client_wallet)
       params_content = { transaction: { registered_number: '111.111.111-11', value: 100, currency_rate: 10,
                                         transaction_type: :debit } }
       post '/api/v1/transaction', params: params_content

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'Aplicação lista transações' do
   it 'já executadas' do
+    create(:client_wallet, registered_number: '111.111.111-11')
+    create(:client_wallet, registered_number: '222.111.111-11', category: Category.first)
     admin = create(:admin, status: :active)
     fake_response = double('farady_response', status: 200, body: JSON.generate(currency_value: 10.0))
     currency_rate = JSON.parse(fake_response.body)
