@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_223813) do
     t.string "email"
     t.integer "balance", default: 0
     t.integer "bonus_balance", default: 0
-    t.integer "category_id", null: false
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_client_wallets_on_category_id"

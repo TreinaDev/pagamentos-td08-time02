@@ -5,7 +5,7 @@ class CreateClientWallets < ActiveRecord::Migration[7.0]
       t.string :email
       t.integer :balance, default: 0
       t.integer :bonus_balance, default: 0
-      t.references :category, null: false, foreign_key: true
+      t.references :category, null: true, foreign_key: true
 
       t.timestamps
     end
