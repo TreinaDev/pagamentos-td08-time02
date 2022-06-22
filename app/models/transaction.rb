@@ -9,13 +9,23 @@ class Transaction < ApplicationRecord
   validates :registered_number,
             format: { with: %r{\A(\d{3}\.\d{3}\.\d{3}-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})\z} }
 
-  def check_wallet_balance_for_debit
-    wallet = ClientWallet.find_by(registered_number: registered_number)
+  private
 
+  def check_wallet_balance_for_debit
+    wallet = ClientWallet.find_by(registered_number:)
     if wallet.balance < value
       pending!
     elsif value.positive?
-      wallet.update(balance: wallet.balance - value)
+      wallet_transaction(wallet)
+    end
+  end
+
+  def wallet_transaction(wallet)
+    total_discount = value - (value * wallet.category.discount / 100)
+    if cashback
+      wallet.update(balance: wallet.balance - total_discount + cashback)
+    else
+      wallet.update(balance: wallet.balance - total_discount)
     end
   end
 end

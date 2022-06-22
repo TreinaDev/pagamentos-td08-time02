@@ -13,7 +13,7 @@ pt-BR:
         registered_number: Número de Registro
         value: Valor
         currency_rate: Taxa no Momento
-        transaction_type: Tipo de Transação
+        cashback: Cashback
         status: Status
         updated_at: Atualizado em
         created_at: Criado em

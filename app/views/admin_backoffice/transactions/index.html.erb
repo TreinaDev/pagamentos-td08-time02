@@ -7,22 +7,20 @@
       <tr>
         <th>Número de Registro</th>
         <th>Valor</th>
-        <th>Tipo de Transação</th>
         <th>Taxa no Momento</th>
+        <th>Cashback</th>
       </tr>
     </thead>
 
     <tbody>
-      
       <% @transactions.each do |transaction| %>
         <tr>
-          <td> <%= I18n.t transaction.registered_number %> </td>
+          <td> <%= transaction.registered_number %> </td>
           <td> <%= number_to_currency(transaction.value) %> </td>
-          <td> <%= I18n.t transaction.transaction_type %> </td>
-          <td> <%= I18n.t transaction.currency_rate %> </td>
+          <td> <%= transaction.currency_rate %> </td>
+          <td> <%= transaction.cashback ? number_to_currency(transaction.cashback) : number_to_currency(0) %> </td>
         </tr>
       <% end %>
-      
     </tbody>
   </table>
 <% else %>
