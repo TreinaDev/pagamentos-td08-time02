@@ -1,17 +1,17 @@
-<h3>Taxas de Câmbio</h3>
+<h3><%= Currency.model_name.human(count: @currencies.count) %></h3></h3>
 
 <div>
   <% @currencies.each do |currency| %>
     <div class="<% currency.status %>" style="border: 2px solid #000; margin: 10px 0; padding: 10px">
       <% if currency.pending? %>
         <p>Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador.</p>
-        <%= button_to 'Aprovar taxa', approve_admin_backoffice_currency_path(currency) %>
-        <%= button_to 'Rejeitar taxa', reject_admin_backoffice_currency_path(currency) %>
+        <%= button_to I18n.t(:approve_currency), approve_admin_backoffice_currency_path(currency) %>
+        <%= button_to I18n.t(:refuse_currency), reject_admin_backoffice_currency_path(currency) %>
       <% end %>
-      <p>Valor de um Rubi é <%= currency.currency_value %> Reais</p>
-      <p>Usuário Responsável: <%= currency.admin.name %></p>
-      <p>Status: <%= currency.status %></p>
-      <p>Criado dia: <%= I18n.l(currency.created_at.to_date, format: :default) %></p>
+      <p><%= Currency.human_attribute_name(:currency_value) %>: <%= number_to_currency(currency.currency_value)%></p>
+      <p><%=I18n.t(:responsable_user)%>: <%= currency.admin.name %></p>
+      <p><%=Currency.human_attribute_name(:status)%>: <%= currency.status %></p>
+      <p><%=Currency.human_attribute_name(:created_at)%>: <%= I18n.l(currency.created_at.to_date, format: :default) %></p>
     </div>
   <% end %>
 </div>

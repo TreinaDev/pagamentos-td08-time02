@@ -1,13 +1,13 @@
-<h3>Carteira do cliente <%= @client_wallet.registered_number %></h3>
+<h3><%= ClientWallet.model_name.human %> <%= @client_wallet.registered_number %></h3>
 
 <dl>
-  <dt>CPF ou CNPJ:</dt>
+  <dt><%= ClientWallet.human_attribute_name(:registered_number) %></dt>
   <dd> <%= @client_wallet.registered_number %> </dd>
-  <dt>E-mail:</dt>
+  <dt><%= ClientWallet.human_attribute_name(:email) %></dt>
   <dd> <%= @client_wallet.email %> </dd>
-  <dt>Saldo:</dt>
+  <dt><%= ClientWallet.human_attribute_name(:balance) %></dt>
   <dd> <%= @client_wallet.balance %> </dd>
-  <dt>Saldo Bônus:</dt>
+  <dt><%= ClientWallet.human_attribute_name(:balance) %></dt>
   <dd> <%= @client_wallet.bonus_balance %> </dd>
   <%= form_with(model: [:admin_backoffice, @client_wallet]) do |form| %>
     <div>

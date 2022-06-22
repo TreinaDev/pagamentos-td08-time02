@@ -1,0 +1,24 @@
+pt-BR:
+  approval_requisitions: Requisições de aprovação
+  payments: Pagamentos
+  register_new_currency: Cadastrar nova Taxa
+  register: Registrar-se
+  empty_bonus_conversion: Não há conversão bônus cadastrada
+  exit: Sair
+  come_back: Voltar
+  register_new_bonus_conversion: Cadastrar nova conversão bônus
+  sign_in: Entrar
+  clients_wallets: Carteiras de Clientes
+  bonus_conversions: Conversões Bônus
+  categories: Categorias
+  add_new_category: Adicionar nova categoria
+  approve: Aprovar
+  refuse: Recusar 
+  save: Salvar
+  new_currency: Nova taxa de câmbio
+  empty_wallets: Ainda não há nenhuma carteira de cliente cadastrada.
+  verify_bellow_errors: 'Verifique os erros abaixo:'
+  new_conversion_bonus: Cadastrar Conversão Bônus
+  approve_currency: Aprovar taxa
+  refuse_currency: Rejeitar taxa
+  responsable_user: Usuário Responsável

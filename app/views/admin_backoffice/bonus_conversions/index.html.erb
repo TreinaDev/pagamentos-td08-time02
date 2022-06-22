@@ -1,15 +1,15 @@
-<h2>Conversões Bônus</h2>
+<h2><%=I18n.t(:bonus_conversions)%></h2>
 
-<%= link_to 'Cadastrar nova conversão bônus',  new_admin_backoffice_bonus_conversion_path %>
+<%= link_to I18n.t(:register_new_bonus_conversion),  new_admin_backoffice_bonus_conversion_path %>
 
 <% if @bonus_conversions.any? %>
   <table>
     <thead>
       <tr>
-        <th>Data inicial</th>
-        <th>Data final</th>
-        <th>Percentual bônus</th>
-        <th>Prazo para uso (dias)</th>
+        <th><%= BonusConversion.human_attribute_name(:initial_date) %></th>
+        <th><%= BonusConversion.human_attribute_name(:final_date) %></th>
+        <th><%= BonusConversion.human_attribute_name(:percentage) %></th>
+        <th><%= BonusConversion.human_attribute_name(:deadline) %></th>
         <th></th>
       </tr>
     </thead>
@@ -27,7 +27,7 @@
     </tbody>
   </table>
 <% else %>
-  <p>Não há conversão bônus cadastrada</p>
+  <p><%= I18n.t(:empty_bonus_conversion)%></p>
 <% end %>
 
-<%= link_to 'Voltar', root_path %>
+<%= link_to I18n.t(:come_back), root_path %>
