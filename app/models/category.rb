@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
   belongs_to :bonus_conversion, optional: true, dependent: :destroy
-  
+  has_many :client_wallets
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :name, length: { minimum: 3 }

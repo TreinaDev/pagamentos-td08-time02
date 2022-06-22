@@ -5,3 +5,4 @@ Admin.create(name: 'Admin de Marca', email: 'admin2@userubis.com.br', password: 
 
 Currency.create(status: :active, currency_value: 1.5, admin: Admin.first)
 Currency.create(status: :inactive, currency_value: 2, admin: Admin.last)
+Category.create(name: 'Padrão')
