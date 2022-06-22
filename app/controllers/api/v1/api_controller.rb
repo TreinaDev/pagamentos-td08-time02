@@ -5,10 +5,10 @@ class Api::V1::ApiController < ActionController::API
   private
 
   def return_status_500
-    render status: :internal_server_error, plain: 'Error'
+    head 500
   end
 
   def return_status_404
-    render status: 404, plain: 'Não existe esse cliente.'
+    head 404
   end
 end
