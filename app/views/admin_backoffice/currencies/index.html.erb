@@ -6,6 +6,7 @@
       <% if currency.pending? %>
         <p>Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador.</p>
         <%= button_to 'Aprovar taxa', approve_admin_backoffice_currency_path(currency) %>
+        <%= button_to 'Rejeitar taxa', reject_admin_backoffice_currency_path(currency) %>
       <% end %>
       <p>Valor de um Rubi é <%= currency.currency_value %> Reais</p>
       <p>Usuário Responsável: <%= currency.admin.name %></p>

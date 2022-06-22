@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Administrador cria uma categoria' do
+describe 'Administrador cria uma nova taxa' do
   it 'enquanto há outra pendente' do
     admin = create(:admin, status: :active)
     create(:currency)
