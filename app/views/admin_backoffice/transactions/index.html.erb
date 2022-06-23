@@ -18,10 +18,10 @@
       <% @transactions.each do |transaction| %>
         <tr>
           <td> <%= transaction.registered_number %> </td>
-          <td> <%= number_to_currency(transaction.value).gsub('R$', 'RU')  %> </td>
+          <td> <%= number_to_currency(transaction.value / 100.0).gsub('R$', 'RU')  %> </td>
           <td> <%= transaction.currency_rate %> </td>
           <td> 
-            <%= transaction.cashback ? number_to_currency(transaction.cashback).gsub('R$', 'RU') 
+            <%= transaction.cashback ? number_to_currency(transaction.cashback / 100.0).gsub('R$', 'RU') 
                                      : number_to_currency(0).gsub('R$', 'RU')  %> 
           </td>
           <td> <%= I18n.t(transaction.status) %> </td>

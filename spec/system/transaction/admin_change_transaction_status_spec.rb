@@ -25,9 +25,9 @@ describe 'Aplicação lista transações' do
       end
       within('tbody') do
         expect(page).to have_css('td', text: '111.111.111-11')
-        expect(page).to have_css('td', text: 'RU 500,00')
+        expect(page).to have_css('td', text: 'RU 5,00')
         expect(page).to have_css('td', text: '1.5')
-        expect(page).to have_css('td', text: 'RU 30,00')
+        expect(page).to have_css('td', text: 'RU 0,30')
         expect(page).to have_css('td', text: 'Aceito')
       end
     end
@@ -57,9 +57,9 @@ describe 'Aplicação lista transações' do
       end
       within('tbody') do
         expect(page).to have_css('td', text: '111.111.111-11')
-        expect(page).to have_css('td', text: 'RU 500,00')
+        expect(page).to have_css('td', text: 'RU 5,00')
         expect(page).to have_css('td', text: '1.5')
-        expect(page).to have_css('td', text: 'RU 30,00')
+        expect(page).to have_css('td', text: 'RU 0,30')
         expect(page).to have_css('td', text: 'Rejeitado')
       end
     end
