@@ -22,7 +22,7 @@ describe 'Wallet Client API' do
     end
 
     it 'com um cliente que já existe' do
-      create(:client_wallet)
+      create(:client_wallet, email: 'teste@email.com')
       wallet_params = { client_wallet: { registered_number: '111.111.111-11', email: 'teste@email.com' } }
 
       post '/api/v1/client_wallets', params: wallet_params
