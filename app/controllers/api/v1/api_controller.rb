@@ -5,10 +5,11 @@ class Api::V1::ApiController < ActionController::API
   private
 
   def return_status_500
-    render status: :internal_server_error, json: JSON.generate(error: 'Internal server error')
-  end
 
+    head :internal_server_error
+  end
+  
   def return_status_404
-    render status: :not_found, plain: 'Não existe esse cliente.'
+    head :not_found
   end
 end

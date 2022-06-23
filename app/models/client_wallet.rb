@@ -1,6 +1,7 @@
 class ClientWallet < ApplicationRecord
   belongs_to :category, optional: true
-
+  
+  validates :registered_number, :email, uniqueness: true
   validates :registered_number, :email, :balance, :bonus_balance, presence: true
   validates :balance, :bonus_balance, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :email,

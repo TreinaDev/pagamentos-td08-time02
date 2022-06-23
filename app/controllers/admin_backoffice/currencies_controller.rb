@@ -22,7 +22,6 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
 
   def approve
     @currency = Currency.find(params[:id])
-
     if current_admin.id == @currency.admin_id
       redirect_to admin_backoffice_currencies_path,
                   notice: 'Você não pode aprovar essa taxa, solicite a outro administrador.'
@@ -32,6 +31,12 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
       @currencies.first.inactive!
       redirect_to admin_backoffice_currencies_path, notice: 'Taxa aprovada com sucesso!'
     end
+  end
+
+  def reject
+    @currency = Currency.find(params[:id])
+    @currency.inactive!
+    redirect_to admin_backoffice_currencies_path, notice: 'Taxa rejeitada com sucesso!'
   end
 
   private

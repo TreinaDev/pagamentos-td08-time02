@@ -20,6 +20,18 @@ describe 'Wallet Client API' do
       expect(response.body).to include 'E-mail não pode ficar em branco'
       expect(response.body).to include 'CPF ou CNPJ não é válido'
     end
+
+    it 'com um cliente que já existe' do
+      create(:client_wallet)
+      wallet_params = { client_wallet: { registered_number: '111.111.111-11', email: 'teste@email.com' } }
+
+      post '/api/v1/client_wallets', params: wallet_params
+
+      expect(response).to have_http_status(412)
+      expect(response.body).to include 'E-mail já está em uso'
+      expect(response.body).to include 'CPF ou CNPJ já está em uso'
+    end
+
   end
 
   context 'GET /api/v1/client_wallet/balance' do

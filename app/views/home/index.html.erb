@@ -1,3 +1,4 @@
 <% if admin_signed_in? %>
-  <%= link_to 'Requisições de aprovação', admin_backoffice_pending_admins_path %>
+  <%= link_to I18n.t(:approval_requisitions), admin_backoffice_pending_admins_path %>
 <% end %>
+

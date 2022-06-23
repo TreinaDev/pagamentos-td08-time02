@@ -1,8 +1,8 @@
-<h2>Nova conversão Bônus</h2>
+<h2><%=I18n.t(:new_conversion_bonus)%></h2>
 
 
 <% if @bonus_conversion.errors.any? %>
-    <p>Verifique os erros abaixo:</p>
+    <p><%= I18n.t(:verify_bellow_errors)%></p>
     <ul>
       <% @bonus_conversion.errors.full_messages.each do |message| %>
         <li> <%= message %> </li>
@@ -33,8 +33,8 @@
   </div>
 
   <div>
-    <%= f.submit "Cadastrar Conversão Bônus" %>
+    <%= f.submit I18n.t(:new_conversion_bonus) %>
   </div>
 <% end %>
 
-<%= link_to 'Voltar', admin_backoffice_bonus_conversions_path %>
+<%= link_to I18n.t(:come_back), admin_backoffice_bonus_conversions_path %>
