@@ -10,6 +10,6 @@ pt-BR:
     attributes:
       category:
         name: Nome da categoria
-        discount: Taxa fixa de desconto
+        discount: Taxa de Desconto
         bonus_conversion: Conversão Bônus
         bonus_conversion_id: Conversão Bônus

@@ -7,5 +7,7 @@ pt-BR:
     attributes:
       currency:
         id: ID
-        currency_value: Valor de um Rubi em Reais
+        status: Status
+        currency_value: Valor de um Rubi
         admin_id: Administrador
+        created_at: Criado dia

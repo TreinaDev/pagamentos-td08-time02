@@ -12,7 +12,7 @@ describe 'Administrador cadastra categoria de cliente nova' do
     click_on 'Adicionar nova categoria'
 
     fill_in 'Nome da categoria', with: 'Genérica'
-    fill_in 'Taxa fixa de desconto', with: 3 
+    fill_in 'Taxa de Desconto', with: 3 
     select '1', from: 'Conversão Bônus'
     click_on 'Registrar'
 
@@ -29,7 +29,7 @@ describe 'Administrador cadastra categoria de cliente nova' do
     visit new_admin_backoffice_category_path
 
     fill_in 'Nome da categoria', with: ''
-    fill_in 'Taxa fixa de desconto', with: 3
+    fill_in 'Taxa de Desconto', with: 3
     click_on 'Registrar'
 
     expect(page).to have_content('Não foi possível criar a categoria')

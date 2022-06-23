@@ -1,7 +1,7 @@
 <h3>Categorias Cadastradas</h3>
 
 <div class="links">
-  <%= link_to 'Adicionar nova categoria', new_admin_backoffice_category_path %>
+  <%= link_to I18n.t(:add_new_category), new_admin_backoffice_category_path %>
 </div>
 
 <div>
@@ -10,10 +10,10 @@
   <% end %>
   <% @categories.each do |category| %>
     <div class="<%= category.name.parameterize.underscore %>">
-      <p>Categoria: <%= category.name %></p>
-      <p>Taxa de Desconto: <%= category.discount %>%</p>
+      <p><%= Category.model_name.human %>: <%= category.name %></p>
+      <p><%= Category.human_attribute_name(:discount) %>: <%= category.discount %>%</p>
       <% unless category.bonus_conversion.nil? %>
-        <p>Conversão Bônus: <%= category.bonus_conversion.percentage %>%</p>
+        <p><%= Category.human_attribute_name(:bonus_conversion) %>: <%= category.bonus_conversion.percentage %>%</p>
       <% end %>
       <%= link_to I18n.t(:edit), edit_admin_backoffice_category_path(category.id) %>
     </div>

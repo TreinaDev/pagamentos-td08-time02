@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pagamentos</title>
+    <title><%= I18n.t(:payments) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,23 +13,23 @@
   <body>
     <header>
       <div>
-        <h1><%= link_to 'Pagamentos', root_path %></h1>
+        <h1><%= link_to I18n.t(:payments), root_path %></h1>
       </div>
       <nav>
         <% if admin_signed_in? %>
           <%= current_admin.name %> | 
           <%= current_admin.email %> |
-          <%= link_to 'Taxa de Câmbio', admin_backoffice_currencies_path %> |
+          <%= link_to Currency.model_name.human, admin_backoffice_currencies_path %> |
           <% if Currency.pending.empty? %>
-            <%= link_to 'Cadastrar nova Taxa', new_admin_backoffice_currency_path %> |
+            <%= link_to I18n.t(:register_new_currency), new_admin_backoffice_currency_path %> |
           <% end %>
-          <%= link_to 'Conversões Bônus', admin_backoffice_bonus_conversions_path %> |
-          <%= link_to 'Categorias',  admin_backoffice_categories_path %> |
-          <%= link_to 'Carteiras de Clientes', admin_backoffice_client_wallets_path %>
-          <%= button_to 'Sair', destroy_admin_session_path, method: :delete%>
+          <%= link_to I18n.t(:bonus_conversions), admin_backoffice_bonus_conversions_path %> |
+          <%= link_to I18n.t(:categories),  admin_backoffice_categories_path %> |
+          <%= link_to I18n.t(:clients_wallets), admin_backoffice_client_wallets_path %>
+          <%= button_to I18n.t(:exit), destroy_admin_session_path, method: :delete%>
         <% else %> 
-          <%= link_to 'Entrar', new_admin_session_path %> |
-          <%= link_to 'Registrar-se', new_admin_registration_path %>
+          <%= link_to I18n.t(:sign_in), new_admin_session_path %> |
+          <%= link_to I18n.t(:register), new_admin_registration_path %>
         <% end %>
       </nav>
     </header>
