@@ -33,6 +33,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Devise
 gem 'devise'
 
+# Faraday
+gem 'faraday'
+
 group :development do
   gem 'bundler-audit'
 end

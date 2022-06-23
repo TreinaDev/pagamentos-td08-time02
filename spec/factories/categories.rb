@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :category do
-    name { "VIP" }
+    name { 'VIP' }
     discount { 10 }
   end
 end

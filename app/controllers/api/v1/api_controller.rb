@@ -5,10 +5,11 @@ class Api::V1::ApiController < ActionController::API
   private
 
   def return_status_500
-    head 500
-  end
 
+    head :internal_server_error
+  end
+  
   def return_status_404
-    head 404
+    head :not_found
   end
 end

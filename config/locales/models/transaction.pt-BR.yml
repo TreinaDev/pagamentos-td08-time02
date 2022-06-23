@@ -1,0 +1,19 @@
+pt-BR:
+  accepted: Aceito
+  rejected: Rejeitado
+  debit: Débito
+  credit: Crédito
+  activerecord:
+    models:
+      transaction: 
+        one: Transação
+        other: Transações
+    attributes:
+      transaction:
+        registered_number: Número de Registro
+        value: Valor
+        currency_rate: Taxa no Momento
+        cashback: Cashback
+        status: Status
+        updated_at: Atualizado em
+        created_at: Criado em
