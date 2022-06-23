@@ -22,3 +22,6 @@ pt-BR:
   approve_currency: Aprovar taxa
   refuse_currency: Rejeitar taxa
   responsable_user: Usuário Responsável
+  situation: Ação
+  approval_transaction: Transação Aceita
+  refuse_transaction: Transação Recusada

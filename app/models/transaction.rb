@@ -4,8 +4,10 @@ class Transaction < ApplicationRecord
 
   after_create :check_wallet_balance_for_debit
 
-  validates :value, :registered_number, :currency_rate, presence: true
+  validates :value, :registered_number, :currency_rate, :order, presence: true
+  validates :order, uniqueness: true
   validates :value, :currency_rate, numericality: { greater_than: 0 }
+  validates :cashback, numericality: { greater_than_or_equal_to: 0 }
   validates :registered_number,
             format: { with: %r{\A(\d{3}\.\d{3}\.\d{3}-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})\z} }
 
@@ -15,7 +17,7 @@ class Transaction < ApplicationRecord
     wallet = ClientWallet.find_by(registered_number:)
     if wallet.balance < value
       pending!
-    elsif value.positive?
+    else
       wallet_transaction(wallet)
     end
   end

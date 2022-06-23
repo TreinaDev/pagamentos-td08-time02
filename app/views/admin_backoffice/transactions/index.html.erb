@@ -5,10 +5,12 @@
   <table>
     <thead>
       <tr>
-        <th>Número de Registro</th>
-        <th>Valor</th>
-        <th>Taxa no Momento</th>
-        <th>Cashback</th>
+        <th> <%= Transaction.human_attribute_name(:registered_number) %> </th>
+        <th> <%= Transaction.human_attribute_name(:value) %> </th>
+        <th> <%= Transaction.human_attribute_name(:currency_rate) %> </th>
+        <th> <%= Transaction.human_attribute_name(:cashback) %> </th>
+        <th> <%= Transaction.human_attribute_name(:status) %> </th>
+        <th> <%= I18n.t(:situation) %> </th>
       </tr>
     </thead>
 
@@ -16,13 +18,23 @@
       <% @transactions.each do |transaction| %>
         <tr>
           <td> <%= transaction.registered_number %> </td>
-          <td> <%= number_to_currency(transaction.value) %> </td>
+          <td> <%= number_to_currency(transaction.value).gsub('R$', 'RU')  %> </td>
           <td> <%= transaction.currency_rate %> </td>
-          <td> <%= transaction.cashback ? number_to_currency(transaction.cashback) : number_to_currency(0) %> </td>
+          <td> 
+            <%= transaction.cashback ? number_to_currency(transaction.cashback).gsub('R$', 'RU') 
+                                     : number_to_currency(0).gsub('R$', 'RU')  %> 
+          </td>
+          <td> <%= I18n.t(transaction.status) %> </td>
+          <% if transaction.pending? %>
+            <td>
+                <%= button_to t(:approve), approve_admin_backoffice_transaction_path(transaction.id), method: :post %>   
+                <%= button_to t(:refuse), refuse_admin_backoffice_transaction_path(transaction.id), method: :post %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>Não há transações cadastradas</p>
+  <p> <%= I18n.t(:transaction_not_found) %> </p>
 <% end %>

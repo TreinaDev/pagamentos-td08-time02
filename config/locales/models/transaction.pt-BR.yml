@@ -1,8 +1,10 @@
 pt-BR:
   accepted: Aceito
   rejected: Rejeitado
+  pending: Pendente
   debit: Débito
   credit: Crédito
+  transaction_not_found: Não há transações cadastradas
   activerecord:
     models:
       transaction: 

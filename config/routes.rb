@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :admin_backoffice do
-    resources :transactions, only: %i[index]
+    resources :transactions, only: %i[index] do
+      post 'approve', on: :member
+      post 'refuse', on: :member
+    end
     resources :client_wallets
     resources :currencies, only: %i[index create new] do
       post 'approve', on: :member
@@ -23,7 +26,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'current_rate', to: 'exchanges_rate#current_rate'
-      resources :transactions, only: %i[create]
+      resources :transactions, only: %i[create show]
       resources :client_wallets, only: %i[create]
       get 'client_wallet/balance', to: 'client_wallets#balance'
     end
