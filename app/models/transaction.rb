@@ -27,7 +27,7 @@ class Transaction < ApplicationRecord
     if wallet.bonus_balance
       check_bonus_balance(wallet, final_value)
     else
-      add_cashbak(wallet, final_value)
+      add_cashback(wallet, final_value)
     end
   end
 
@@ -39,10 +39,10 @@ class Transaction < ApplicationRecord
       wallet.update(bonus_balance: wallet.bonus_balance - final_value)
       final_value = 0
     end
-    add_cashbak(wallet, final_value)
+    add_cashback(wallet, final_value)
   end
 
-  def add_cashbak(wallet, final_value)
+  def add_cashback(wallet, final_value)
     return wallet.update(balance: wallet.balance - final_value + cashback) if cashback
 
     wallet.update(balance: wallet.balance - final_value)

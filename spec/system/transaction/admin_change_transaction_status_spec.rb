@@ -45,8 +45,10 @@ describe 'Aplicação lista transações' do
     visit root_path
     click_on 'Transações'
     click_on 'Recusar'
+    fill_in 'Mensagem',	with: 'Pobre não tem saldo!!!'
+    click_on 'Salvar'
 
-    expect(page).to have_content('Transação Recusada')
+    expect(page).to have_content('Transação editada com sucesso')
     within('table') do
       within('thead tr') do
         expect(page).to have_css('th', text: 'Número de Registro')
@@ -63,5 +65,6 @@ describe 'Aplicação lista transações' do
         expect(page).to have_css('td', text: 'Rejeitado')
       end
     end
+    expect(Transaction.last.message).to include('Pobre não tem saldo!!!')
   end
 end

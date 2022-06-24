@@ -1,9 +1,9 @@
 class Api::V1::TransactionsController < Api::V1::ApiController
   def show
-    transactions = Transaction.find_by(order: params[:id])
-    raise ActiveRecord::RecordNotFound if transactions.nil?
+    transaction = Transaction.find_by(order: params[:id])
+    raise ActiveRecord::RecordNotFound if transaction.nil?
 
-    render status: :ok, json: transactions.as_json(only: %i[registered_number status order])
+    render status: :ok, json: transaction.as_json(only: %i[registered_number status order message])
   end
 
   def create

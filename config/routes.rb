@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :admin_backoffice do
-    resources :transactions, only: %i[index] do
+    resources :transactions, only: %i[index edit update] do
       post 'approve', on: :member
       post 'refuse', on: :member
     end
