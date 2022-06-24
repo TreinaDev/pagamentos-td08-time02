@@ -23,11 +23,28 @@ class Transaction < ApplicationRecord
   end
 
   def wallet_transaction(wallet)
-    total_discount = value - (value * wallet.category.discount / 100)
-    if cashback
-      wallet.update(balance: wallet.balance - total_discount + cashback)
+    final_value = value - (value * wallet.category.discount / 100)
+    if wallet.bonus_balance
+      check_bonus_balance(wallet, final_value)
     else
-      wallet.update(balance: wallet.balance - total_discount)
+      add_cashbak(wallet, final_value)
     end
+  end
+
+  def check_bonus_balance(wallet, final_value)
+    if wallet.bonus_balance < final_value
+      final_value -= wallet.bonus_balance
+      wallet.update(bonus_balance: 0)
+    else
+      wallet.update(bonus_balance: wallet.bonus_balance - final_value)
+      final_value = 0
+    end
+    add_cashbak(wallet, final_value)
+  end
+
+  def add_cashbak(wallet, final_value)
+    return wallet.update(balance: wallet.balance - final_value + cashback) if cashback
+
+    wallet.update(balance: wallet.balance - final_value)
   end
 end

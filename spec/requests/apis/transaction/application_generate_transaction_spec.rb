@@ -70,4 +70,21 @@ describe 'Aplicação gera uma transação' do
       expect(ClientWallet.last.balance).to eq(130)
     end
   end
+
+  context 'e valor é deduzido do saldo bônus' do
+    it 'com sucesso' do
+      create(:admin, status: :active)
+      create(:currency)
+      create(:client_wallet, balance: 1000, bonus_balance: 50)
+
+      params_content = { transaction: { registered_number: '111.111.111-11', value: 1000, cashback: 30, order: 1 } }
+      post '/api/v1/transactions', params: params_content
+
+      expect(response).to have_http_status(:created)
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response['message']).to include 'Transação realizada com sucesso!'
+      expect(ClientWallet.last.balance).to eq(180)
+    end
+  end
 end
