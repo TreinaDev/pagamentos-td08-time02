@@ -1,6 +1,5 @@
 class Transaction < ApplicationRecord
   enum status: { accepted: 0, rejected: 1, pending: 2 }
-  enum transaction_type: { debit: 0, credit: 1 }
 
   after_create :check_wallet_balance_for_debit
 
