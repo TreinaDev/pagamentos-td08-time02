@@ -1,0 +1,100 @@
+/* Fontes */
+@font-face {
+  font-family: 'League Gothic';
+  src: url('LeagueGothic-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('Quicksand-Regular.ttf');
+}
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.text-image {
+  font-size: 24pt;
+  font-weight: bold;
+  font-family: 'League Gothic', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin: 30px 0;
+  font-weight: bold;
+}
+
+h3 {
+  margin: 0 0 20px 0;
+  font-weight: bold;
+}
+/* Fontes */
+
+/* Comum */
+body {
+  background: rgb(223, 223, 223);
+}
+/* Comum */
+
+/* Botão */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.exit-button {
+  border: 1px solid #FFF;
+  color: #FFF;
+  margin-left: 20px;
+  width: 95px;
+  border-radius: 5px;
+}
+
+.exit-button:hover {
+  /* border: 1px solid #000; */
+  border-radius: 5px;
+  background-color: #FFF;
+  color: #000;
+}
+
+.btn-login {
+  width: 100%;
+}
+/* Botão */
+
+.margin-left {
+  margin-left: 10px;
+}
+
+/* Formulário */
+.form-container {
+  border-radius: 5px;
+  padding: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+/* Formulário */
+
+/* Erros */
+p.notice :not(empty) {
+  background-color: rgb(0, 255, 0);
+}
+
+p.notice  {
+  display: none;
+}
+
+p.alert :not(empty) {
+  background-color: rgb(255, 0, 0);
+}
+
+p.alert  {
+  display: none;
+}
+
+.field_with_errors {
+  
+}
+/* Erros */

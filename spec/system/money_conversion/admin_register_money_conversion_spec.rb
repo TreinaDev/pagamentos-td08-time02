@@ -8,7 +8,7 @@ describe 'Administrador cadastra uma taxa de câmbio' do
     login_as(admin)
     visit root_path
     click_on 'Taxa de Câmbio'
-    click_on 'Cadastrar nova Taxa'
+    click_on 'Nova Taxa'
     fill_in 'Valor de um Rubi', with: 1.5
     click_on 'Salvar'
 
@@ -27,7 +27,7 @@ describe 'Administrador cadastra uma taxa de câmbio' do
     login_as(admin)
     visit root_path
     click_on 'Taxa de Câmbio'
-    click_on 'Cadastrar nova Taxa'
+    click_on 'Nova Taxa'
     fill_in 'Valor de um Rubi', with: 1.6
     click_on 'Salvar'
 
@@ -62,7 +62,7 @@ describe 'Administrador cadastra uma taxa de câmbio' do
     login_as(admin)
     visit(root_path)
     click_on 'Taxa de Câmbio'
-    click_on 'Cadastrar nova Taxa'
+    click_on 'Nova Taxa'
     fill_in 'Valor de um Rubi', with: 1.66
     click_on 'Salvar'
 

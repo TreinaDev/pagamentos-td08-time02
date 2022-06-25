@@ -7,38 +7,49 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "style" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <header>
-      <div>
-        <h1><%= link_to I18n.t(:payments), root_path %></h1>
-      </div>
-      <nav>
-        <% if admin_signed_in? %>
-          <%= current_admin.name %> | 
-          <%= current_admin.email %> |
-          <%= link_to Currency.model_name.human, admin_backoffice_currencies_path %> |
-          <% if Currency.pending.empty? %>
-            <%= link_to I18n.t(:register_new_currency), new_admin_backoffice_currency_path %> |
+    <header class="p-3 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-between ">
+          <%= link_to root_path, class: 'd-flex align-items-center  mb-2 mb-md-0 text-dark text-decoration-none' do %>
+            <%= image_tag 'coins.png', size: '50x50', alt: I18n.t(:payments), title: I18n.t(:payments) %> 
+            <span class="text-white margin-left text-image"> <%= I18n.t(:payments) %> </span>
           <% end %>
+          
+          <% unless current_admin %>
+            <div class="text-end">
+              <%= link_to I18n.t(:sign_in), new_admin_session_path, class: 'btn btn-outline-light me-2'%>
+              <%= link_to I18n.t(:register), new_admin_registration_path, class: 'btn btn-warning' %>
+            </div>
+          <% else %>
 
-          <%= link_to I18n.t(:bonus_conversions), admin_backoffice_bonus_conversions_path %> |
-          <%= link_to I18n.t(:categories),  admin_backoffice_categories_path %> |
-          <%= link_to I18n.t(:clients_wallets), admin_backoffice_client_wallets_path %> |
-          <%= link_to 'Transações', admin_backoffice_transactions_path %> |
-          <%= button_to I18n.t(:exit), destroy_admin_session_path, method: :delete%>
-
-        <% else %> 
-          <%= link_to I18n.t(:sign_in), new_admin_session_path %> |
-          <%= link_to I18n.t(:register), new_admin_registration_path %>
-        <% end %>
-      </nav>
+            <div class="justify-content-between" >
+              <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"> 
+                <%= link_to Currency.model_name.human, admin_backoffice_currencies_path, class: 'nav-link px-2 text-white' %>
+                <% if Currency.pending.empty? %>
+                  <%= link_to I18n.t(:register_new_currency), new_admin_backoffice_currency_path, class: 'nav-link px-2 text-white' %> 
+                <% end %>
+                <%= link_to I18n.t(:bonus_conversions), admin_backoffice_bonus_conversions_path, class: 'nav-link px-2 text-white' %>
+                <%= link_to I18n.t(:categories),  admin_backoffice_categories_path, class: 'nav-link px-2 text-white' %>
+                <%= link_to I18n.t(:clients_wallets), admin_backoffice_client_wallets_path, class: 'nav-link px-2 text-white' %>
+                <%= link_to 'Transações', admin_backoffice_transactions_path, class: 'nav-link px-2 text-white' %>
+                <%= button_to I18n.t(:exit), destroy_admin_session_path, method: :delete, class: 'nav-link exit-button' %>
+              </ul> 
+            </div>
+          
+          <% end %>
+        </div>
+      </div>
     </header>
-    
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <div class="flash-message-container">    
+      <p class='notice'><%= notice %></p>
+      <p class='alert'><%= alert %></p>
+    </div>
 
     <main>
       <%= yield %>

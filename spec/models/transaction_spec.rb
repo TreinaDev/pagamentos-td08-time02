@@ -49,7 +49,7 @@ RSpec.describe Transaction, type: :model do
 
       it 'Inválido quando cashback é menor que zero' do
         transaction = described_class.new(value: 100, registered_number: '114444.111-11', status: :accepted,
-                                          status: :accepted, cashback: -1, currency_rate: 1.5, order: 1)
+                                          cashback: -1, currency_rate: 1.5, order: 1)
 
         expect(transaction.valid?).to be false
       end
