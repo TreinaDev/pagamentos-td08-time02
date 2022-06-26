@@ -3,9 +3,12 @@ class Api::V1::CreditsController < Api::V1::ApiController
 
   def create
     client_wallet = ClientWallet.find_by(registered_number: credit_params[:registered_number])
-    client_wallet.balance += ((credit_params[:value]).to_f / Currency.active.first.currency_value).to_i
-    client_wallet.save!
-    render status: 201, json: {status: 'approved', message: 'Transação aprovada'}
+    credit = Credit.new(value: credit_params[:value], client_wallet: client_wallet)
+    if credit.save
+      render status: :created, json: {status: 'approved', message: 'Transação aprovada'}
+    else
+      render status: :precondition_failed, json: { errors: credit.errors.full_messages }
+    end
   end
 
   private
