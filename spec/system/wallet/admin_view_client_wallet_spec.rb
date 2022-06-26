@@ -38,4 +38,44 @@ describe 'Administrador acessa a tela de cliente' do
     expect(page).to have_content 'CPF ou CNPJ: 41.780.304/0001-04'
     expect(page).to have_link '41.780.304/0001-04'
   end
+
+  it 'e tem o saldo bônus expirado após o deadline' do
+    admin = create(:admin, status: :active)
+    bonus_conversion = create(:bonus_conversion, percentage: 10, initial_date: 12.days.ago, final_date: 10.days.ago, admin: admin)
+    category = create(:category, bonus_conversion: bonus_conversion)
+    client_wallet = create(:client_wallet, bonus_balance: 6, category: category)
+    create(:currency)
+    credit = create(:credit, bonus_conversion: bonus_conversion, client_wallet: client_wallet, created_at: 11.days.ago, bonus_conversion_status: :active)
+
+    login_as(Admin.first)
+    visit root_path
+    click_on 'Carteiras de Clientes'
+    click_on client_wallet.registered_number
+
+    expect(page).to have_content('Saldo 76')
+    expect(page).to have_content('Saldo Bônus 0')
+    client_wallet.reload
+    expect(client_wallet.bonus_balance).to eq(0)
+    # expect(credit.bonus_conversion_status).to eq('inactive')
+  end
+
+  # it 'e tem o saldo bônus expirado após o deadline e retira somente o que não foi gasto' do
+  #   admin = create(:admin, status: :active)
+  #   bonus_conversion = create(:bonus_conversion, percentage: 10, initial_date: 12.days.ago, final_date: 10.days.ago, admin: admin)
+  #   category = create(:category, bonus_conversion: bonus_conversion)
+  #   client_wallet = create(:client_wallet, bonus_balance: 3, category: category)
+  #   create(:currency)
+  #   create(:credit, bonus_conversion: bonus_conversion, client_wallet: client_wallet, created_at: 11.days.ago, bonus_conversion_status: :active)
+# 
+  #   login_as(Admin.first)
+  #   visit root_path
+  #   click_on 'Carteiras de Clientes'
+  #   click_on client_wallet.registered_number
+# 
+  #   expect(page).to have_content('Saldo 76')
+  #   expect(page).to have_content('Saldo Bônus 0')
+  #   client_wallet.reload
+  #   expect(client_wallet.bonus_balance).to eq(0)
+  # end
+
 end

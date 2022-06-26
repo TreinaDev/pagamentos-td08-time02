@@ -44,14 +44,6 @@ RSpec.describe BonusConversion, type: :model do
 
         expect(bonus.valid?).to be false
       end
-
-      it 'inválido quando a data inicial é anterior ao dia em que está sendo registrada' do
-        create(:admin, status: :active)
-        bonus = described_class.new(initial_date: Time.zone.today - 10.days, final_date: Time.zone.today,
-                                    percentage: 10, deadline: 10, admin: Admin.first)
-
-        expect(bonus.valid?).to be false
-      end
     end
 
     context 'numericality' do

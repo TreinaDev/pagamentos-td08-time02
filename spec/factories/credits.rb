@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :credit do
-    value { 1 }
-    bonus_conversion { nil }
-    client_wallet { nil }
-    status { 1 }
+    value { 100 }
+    bonus_conversion 
+    client_wallet 
+    status { 0 }
   end
 end

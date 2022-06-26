@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_26_012537) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_162116) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,6 +66,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_012537) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "bonus_conversion_status", default: 2
+    t.integer "bonus_balance"
     t.index ["bonus_conversion_id"], name: "index_credits_on_bonus_conversion_id"
     t.index ["client_wallet_id"], name: "index_credits_on_client_wallet_id"
   end
