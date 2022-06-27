@@ -1,9 +1,8 @@
 class ClientWallet < ApplicationRecord
   belongs_to :category, optional: true
   has_many :credits
-  after_find :verify_bonus_balance
-  
   before_create :set_default_category
+  after_find :verify_bonus_balance
 
   validates :registered_number, :email, uniqueness: true
   validates :registered_number, :email, :balance, :bonus_balance, presence: true
@@ -21,11 +20,11 @@ class ClientWallet < ApplicationRecord
   end
 
   def verify_bonus_balance
-    unless self.category.bonus_conversion.nil?
+    unless category.bonus_conversion.nil?
       credits.each do |credit|
         credit_deadline = (credit.created_at.to_date + category.bonus_conversion.deadline.days)
         if (credit_deadline < Time.zone.now.to_date) && (credit.created_at.to_date > credit.bonus_conversion.initial_date)
-          final_balance = self.bonus_balance - credit.bonus_balance
+          final_balance = bonus_balance - credit.bonus_balance
           if final_balance.negative?
             self.bonus_balance = 0
           else
