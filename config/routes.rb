@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :transactions, only: %i[create show]
       resources :client_wallets, only: %i[create]
       get 'client_wallet/balance', to: 'client_wallets#balance'
+      resources :credits, only: %i[create]
     end
   end
 end
