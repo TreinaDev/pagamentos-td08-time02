@@ -3,6 +3,6 @@ class AdminBackofficeController < ApplicationController
   before_action :authenticate_admin!
 
   def connection_refused
-    flash[:notice] = 'Ação realizada com sucesso, porém a conexão com o e-commerce não ocorreu!'
+    flash[:notice] = :connection_rejected_message
   end
 end
