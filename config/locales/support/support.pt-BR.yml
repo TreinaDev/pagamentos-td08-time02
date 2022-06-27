@@ -22,6 +22,8 @@ pt-BR:
   approve_currency: Aprovar taxa
   refuse_currency: Rejeitar taxa
   responsable_user: Usuário Responsável
+  connection_rejected_message: 'Ação realizada com sucesso, porém a conexão com o e-commerce não ocorreu!'
   situation: Ação
   approval_transaction: Transação Aceita
   refuse_transaction: Transação Recusada
+
