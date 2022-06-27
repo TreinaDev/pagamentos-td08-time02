@@ -87,4 +87,19 @@ describe 'Aplicação gera uma transação' do
       expect(ClientWallet.last.balance).to eq(180)
     end
   end
+
+  context 'e não há taxa de câmbio ativa' do
+    it 'e retorna erro de taxa não encontrada' do
+      create(:admin, status: :active)
+      create(:currency, status: :inactive)
+      create(:client_wallet, balance: 500)
+      params_content = { transaction: { registered_number: '111.111.111-11', value: 100, order: 1 } }
+      post '/api/v1/transactions', params: params_content
+
+      expect(response).to have_http_status(:not_found)
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response['error']).to eq('Não há uma taxa de câmbia ativa')
+    end
+  end
 end
