@@ -16,7 +16,7 @@ class ClientWallet < ApplicationRecord
     if !self.category.bonus_conversion.nil?
       credits = Credit.where(client_wallet_id: id)
       credits.each do |credit|
-        credit_deadline = (credit.created_at.to_date + (self.category.bonus_conversion.deadline).days)
+        credit_deadline = (credit.created_at.to_date + category.bonus_conversion.deadline.days)
         if (credit_deadline < Time.zone.now.to_date) && (credit.created_at.to_date > credit.bonus_conversion.initial_date)
           final_balance = self.bonus_balance - credit.bonus_balance
           if final_balance.negative?
