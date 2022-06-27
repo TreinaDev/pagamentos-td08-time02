@@ -13,8 +13,7 @@ class ClientWallet < ApplicationRecord
 
 
   def verify_bonus_balance
-    if !self.category.bonus_conversion.nil?
-      credits = Credit.where(client_wallet_id: id)
+    unless self.category.bonus_conversion.nil?
       credits.each do |credit|
         credit_deadline = (credit.created_at.to_date + category.bonus_conversion.deadline.days)
         if (credit_deadline < Time.zone.now.to_date) && (credit.created_at.to_date > credit.bonus_conversion.initial_date)
