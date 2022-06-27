@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       post 'approve', on: :member
       post 'refuse', on: :member
     end
+
+    resources :credit_limits, only: %i[create new]
   end
 
   namespace :api do
