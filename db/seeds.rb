@@ -9,3 +9,7 @@ Currency.create!(status: :inactive, currency_value: 2, admin: Admin.last)
 Category.create!(name: 'Padrão', discount: 0)
 
 ClientWallet.create!(registered_number: '111.111.111-11', email: 'fulano@email.com', category_id: 1)
+ClientWallet.create!(balance: 500, registered_number: '222.111.111-11', email: 'cicrano@email.com', category_id: 1)
+
+Transaction.create!(value: 500, registered_number: '111.111.111-11', currency_rate: 1.5, cashback: 30, order: 1)
+Transaction.create!(value: 10, registered_number: '222.111.111-11', currency_rate: 1.5, order: 2)

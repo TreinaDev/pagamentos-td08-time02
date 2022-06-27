@@ -3,7 +3,6 @@ class CreateTransactions < ActiveRecord::Migration[7.0]
     create_table :transactions do |t|
       t.integer :value
       t.string :registered_number
-      t.integer :transaction_type
       t.integer :status, default: 0
       t.float :currency_rate
 

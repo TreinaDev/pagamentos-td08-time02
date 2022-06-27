@@ -19,7 +19,7 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Metrics/BlockLength:
-  IgnoredMethods: ['describe', 'context']
+  IgnoredMethods: ['describe', 'context', 'namespace']
 
 RSpec/ExampleLength:
   Max: 40
