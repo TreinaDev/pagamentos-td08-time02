@@ -1,8 +1,12 @@
 pt-BR:
   accepted: Aceito
   rejected: Rejeitado
+  pending: Pendente
   debit: Débito
   credit: Crédito
+  transaction_not_found: Não há transações cadastradas
+  transaction_successfully_updated: Transação editada com sucesso
+  transaction_rejected_update: Transação não pode ser editada
   activerecord:
     models:
       transaction: 
@@ -15,5 +19,6 @@ pt-BR:
         currency_rate: Taxa no Momento
         cashback: Cashback
         status: Status
+        message: Mensagem
         updated_at: Atualizado em
         created_at: Criado em

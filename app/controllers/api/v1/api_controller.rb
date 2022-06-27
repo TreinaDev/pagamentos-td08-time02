@@ -5,7 +5,6 @@ class Api::V1::ApiController < ActionController::API
   private
 
   def return_status_500
-
     head :internal_server_error
   end
   
