@@ -7,7 +7,7 @@ class Currency < ApplicationRecord
   after_create :set_pending
 
   validates :currency_value, :status, presence: true
-  validates :currency_value, numericality: { only_float: true, greater_than: 0}
+  validates :currency_value, numericality: { only_float: true, greater_than: 0 }
 
   private
 

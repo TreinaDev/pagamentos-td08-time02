@@ -3,6 +3,8 @@ class ClientWallet < ApplicationRecord
   has_many :credits
   after_find :verify_bonus_balance
   
+  before_create :set_default_category
+
   validates :registered_number, :email, uniqueness: true
   validates :registered_number, :email, :balance, :bonus_balance, presence: true
   validates :balance, :bonus_balance, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -11,6 +13,12 @@ class ClientWallet < ApplicationRecord
   validates :registered_number,
             format: { with: %r{\A(\d{3}\.\d{3}\.\d{3}-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})\z} }
 
+  private
+
+  def set_default_category
+    Category.create(name: 'Padrão', discount: 0) unless Category.any?
+    self.category_id = Category.first.id
+  end
 
   def verify_bonus_balance
     unless self.category.bonus_conversion.nil?
