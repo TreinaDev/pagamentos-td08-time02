@@ -41,59 +41,58 @@ describe 'Administrador acessa a tela de cliente' do
 
   it 'e adiciona saldo bônus à carteira do cliente durante promoção' do
     admin = create(:admin, status: :active)
-    bonus_conversion = create(:bonus_conversion, percentage: 10, admin: admin)
-    category = create(:category, bonus_conversion: bonus_conversion)
-    client_wallet = create(:client_wallet, bonus_balance: 0, category: category)
+    bonus_conversion = create(:bonus_conversion, percentage: 10, admin:)
+    category = create(:category, bonus_conversion:)
+    client_wallet = create(:client_wallet, bonus_balance: 0, category:)
     create(:currency)
-    credit = create(:credit, bonus_conversion: bonus_conversion, client_wallet: client_wallet, created_at: 1.day.ago)
+    create(:credit, bonus_conversion:, client_wallet:, created_at: 1.day.ago)
 
     login_as(Admin.first)
     visit root_path
     click_on 'Carteiras de Clientes'
     click_on client_wallet.registered_number
 
-    expect(page).to have_content('Saldo 76')
-    expect(page).to have_content('Saldo Bônus 6')
-    client_wallet.reload
-    expect(client_wallet.bonus_balance).to eq(6)
+    expect(page).to have_content('Saldo 6676')
+    expect(page).to have_content('Saldo Bônus 666')
   end
 
   it 'e tem o saldo bônus expirado após o deadline' do
     admin = create(:admin, status: :active)
-    bonus_conversion = create(:bonus_conversion, percentage: 10, initial_date: 12.days.ago, final_date: 10.days.ago, admin: admin)
-    category = create(:category, bonus_conversion: bonus_conversion)
-    client_wallet = create(:client_wallet, bonus_balance: 6, category: category)
+    bonus_conversion = create(:bonus_conversion, percentage: 10, initial_date: 12.days.ago,
+                                                 final_date: 9.days.ago, admin:)
+    category = create(:category, bonus_conversion:)
+    client_wallet = create(:client_wallet, category:)
     create(:currency)
-    credit = create(:credit, bonus_conversion: bonus_conversion, client_wallet: client_wallet, created_at: 11.days.ago)
+    create(:credit, bonus_conversion:, client_wallet:, created_at: 11.days.ago)
 
     login_as(Admin.first)
     visit root_path
     click_on 'Carteiras de Clientes'
     click_on client_wallet.registered_number
 
-    expect(page).to have_content('Saldo 76')
+    expect(page).to have_content('Saldo 6676')
     expect(page).to have_content('Saldo Bônus 0')
     client_wallet.reload
     expect(client_wallet.bonus_balance).to eq(0)
   end
 
-   it 'e tem o saldo bônus expirado após o deadline e não deixa o saldo negativo' do
-     admin = create(:admin, status: :active)
-     bonus_conversion = create(:bonus_conversion, percentage: 10, initial_date: 12.days.ago, final_date: 10.days.ago, admin: admin)
-     category = create(:category, bonus_conversion: bonus_conversion)
-     client_wallet = create(:client_wallet, bonus_balance: 3, category: category)
-     create(:currency)
-     create(:credit, bonus_conversion: bonus_conversion, client_wallet: client_wallet, created_at: 11.days.ago)
-  
-     login_as(Admin.first)
-     visit root_path
-     click_on 'Carteiras de Clientes'
-     click_on client_wallet.registered_number
-  
-     expect(page).to have_content('Saldo 76')
-     expect(page).to have_content('Saldo Bônus 0')
-     client_wallet.reload
-     expect(client_wallet.bonus_balance).to eq(0)
-   end
+  it 'e tem o saldo bônus expirado após o deadline e não deixa o saldo negativo' do
+    admin = create(:admin, status: :active)
+    bonus_conversion = create(:bonus_conversion, percentage: 10, initial_date: 12.days.ago,
+                                                 final_date: 10.days.ago, admin:)
+    category = create(:category, bonus_conversion:)
+    client_wallet = create(:client_wallet, category:)
+    create(:currency)
+    create(:credit, bonus_conversion:, client_wallet:, created_at: 11.days.ago)
 
+    login_as(Admin.first)
+    visit root_path
+    click_on 'Carteiras de Clientes'
+    click_on client_wallet.registered_number
+
+    expect(page).to have_content('Saldo 6676')
+    expect(page).to have_content('Saldo Bônus 0')
+    client_wallet.reload
+    expect(client_wallet.bonus_balance).to eq(0)
+  end
 end

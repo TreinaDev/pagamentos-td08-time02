@@ -5,7 +5,7 @@ RSpec.describe Transaction, type: :model do
     context 'presence' do
       it 'Inválido quando valor é nulo' do
         transaction = described_class.new(value: '', registered_number: '111.111.111-11', status: :accepted,
-                                         currency_rate: 1.5, order: 1)
+                                          currency_rate: 1.5, order: 1)
 
         expect(transaction.valid?).to be false
       end
@@ -35,7 +35,7 @@ RSpec.describe Transaction, type: :model do
     context 'numericality' do
       it 'Inválido quando valor é menor que um' do
         transaction = described_class.new(value: 0, registered_number: '111.111.111-11', status: :accepted,
-                                         currency_rate: 1.5, order: 1)
+                                          currency_rate: 1.5, order: 1)
 
         expect(transaction.valid?).to be false
       end
@@ -49,7 +49,7 @@ RSpec.describe Transaction, type: :model do
 
       it 'Inválido quando cashback é menor que zero' do
         transaction = described_class.new(value: 100, registered_number: '114444.111-11', status: :accepted,
-                                          status: :accepted, cashback: -1, currency_rate: 1.5, order: 1)
+                                          cashback: -1, currency_rate: 1.5, order: 1)
 
         expect(transaction.valid?).to be false
       end
