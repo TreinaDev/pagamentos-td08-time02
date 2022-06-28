@@ -62,6 +62,11 @@ button {
 .btn-login {
   width: 100%;
 }
+
+.btn-submit {
+  margin: 0 auto;
+  width: 200px;
+}
 /* Botão */
 
 .margin-left {
@@ -75,26 +80,33 @@ button {
   width: 50%;
   margin: 0 auto;
 }
+
 /* Formulário */
 
 /* Erros */
-p.notice :not(empty) {
-  background-color: rgb(0, 255, 0);
-}
-
-p.notice  {
+.notice:empty {
   display: none;
 }
 
-p.alert :not(empty) {
-  background-color: rgb(255, 0, 0);
-}
-
-p.alert  {
+.alert:empty {
   display: none;
 }
 
-.field_with_errors {
-  
+.radius-bottom {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: none;
+  font-size: 15pt;
 }
 /* Erros */
+
+.active {
+  background-color: #BFD2BF;
+}
+
+.inactive {
+  background-color: rgba(255, 0, 0, 0.144);
+}
+.pending {
+  background-color: rgba(175, 185, 27, 0.685);
+}

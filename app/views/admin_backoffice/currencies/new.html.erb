@@ -1,7 +1,11 @@
-<h2><%=I18n.t(:new_curreny)%></h2>
-
-<%= form_with(model: [:admin_backoffice, @currency]) do |form| %>
-  <%= form.label :currency_value %>
-  <%= form.number_field :currency_value, step: :any %>
-  <%= form.submit I18n.t(:save) %>
-<% end %>
+<div class='container'>
+  <h2><%=I18n.t(:new_currency)%></h2>
+  
+  <%= form_with(model: [:admin_backoffice, @currency], class:'d-flex justify-content-center flex-column') do |form| %>
+    <div class='form-container d-flex justify-content-center'>
+      <%= form.label :currency_value, class:'col-3 text-center align-self-center' %>
+      <%= form.number_field :currency_value, step: :any, class:'form-control col-9' %>
+    </div>
+    <%= form.submit I18n.t(:save), class: 'btn btn-primary btn-submit' %>
+  <% end %>
+</div>
