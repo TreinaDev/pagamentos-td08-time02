@@ -25,7 +25,7 @@ pt-BR:
   situation: Ação
   approval_transaction: Transação Aceita
   refuse_transaction: Transação Recusada
-  active: Aceita
-  inactive: Recusada
+  active: Ativo
+  inactive: Inativo
   pending: Pendente
-  pending_currency: Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador
+  pending_currency: Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador.
