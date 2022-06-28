@@ -2,14 +2,27 @@ class Credit < ApplicationRecord
   belongs_to :bonus_conversion, optional: true
   belongs_to :client_wallet 
   after_create :check_daily_credit_limit 
-  after_create :check_for_bonus_conversion
+  after_create :update_client_wallet
   validates :value, presence: true
   validates :value, numericality: {greater_than: 0}
   enum status: { pending: 2, accepted: 0, refused: 4 }
 
+  def check_for_bonus_conversion
+    unless client_wallet.category.bonus_conversion.nil?
+      bonus_conversion = client_wallet.category.bonus_conversion
+      ruby_value = (value / Currency.active.last.currency_value).to_i
+      self.bonus_balance = ((ruby_value * bonus_conversion.percentage * 0.01) * 100).to_i
+      self.save
+      if DateTime.now <= bonus_conversion.final_date
+        client_wallet.bonus_balance += ((ruby_value * bonus_conversion.percentage * 0.01) * 100).to_i
+      end
+      client_wallet.save
+    end
+  end
+
   private
 
-  def check_for_bonus_conversion
+  def update_client_wallet
     if self.accepted?
       if client_wallet.category.bonus_conversion.nil?
         client_wallet.balance += (value / Currency.active.last.currency_value).to_i
@@ -23,7 +36,6 @@ class Credit < ApplicationRecord
           client_wallet.bonus_balance += ((ruby_value * bonus_conversion.percentage) * 0.01).to_i
         end
       end
-      accepted!
       client_wallet.save
     end
   end
@@ -36,7 +48,7 @@ class Credit < ApplicationRecord
       credits.each do |credit|
         credit_total += credit.value.to_i
       end
-      (credit_total <= daily_credit_limit) ? self.accepted! : self.pending!
+      credit_total <= daily_credit_limit ? self.accepted! : self.pending!
     end
   end
   

@@ -29,6 +29,7 @@
           <%= link_to I18n.t(:clients_wallets), admin_backoffice_client_wallets_path %> |
           <%= link_to 'Transações', admin_backoffice_transactions_path %> |
           <%= link_to 'Cadastrar limite de crédito diário', new_admin_backoffice_credit_limit_path %> |
+          <%= link_to 'Créditos pendentes', admin_backoffice_credits_path %> |
           <%= button_to I18n.t(:exit), destroy_admin_session_path, method: :delete%>
 
         <% else %> 

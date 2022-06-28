@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     end
 
     resources :credit_limits, only: %i[create new]
+    resources :credits, only: %i[index] do
+      post 'approve', on: :member
+      post 'refuse', on: :member
+    end
   end
 
   namespace :api do
