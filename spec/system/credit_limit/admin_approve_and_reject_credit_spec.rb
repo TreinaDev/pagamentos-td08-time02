@@ -75,6 +75,6 @@ describe 'Administrador acessa página de créditos pendentes' do
     expect(page).not_to have_content("CPF: #{client_wallet.registered_number}")
     client_wallet.reload
     expect(client_wallet.balance).to eq(13343)
-    expect(client_wallet.bonus_balance).to eq(1330)
+    expect(client_wallet.bonus_balance).to eq(1333)
   end
 end

@@ -10,11 +10,11 @@ class Credit < ApplicationRecord
   def check_for_bonus_conversion
     unless client_wallet.category.bonus_conversion.nil?
       bonus_conversion = client_wallet.category.bonus_conversion
-      ruby_value = (value / Currency.active.last.currency_value).to_i
-      self.bonus_balance = ((ruby_value * bonus_conversion.percentage * 0.01) * 100).to_i
+      ruby_value = ((value / Currency.active.last.currency_value) * 100.0).to_i
+      self.bonus_balance = (ruby_value * bonus_conversion.percentage * 0.01).to_i
       self.save
       if DateTime.now <= bonus_conversion.final_date
-        client_wallet.bonus_balance += ((ruby_value * bonus_conversion.percentage * 0.01) * 100).to_i
+        client_wallet.bonus_balance += (ruby_value * bonus_conversion.percentage * 0.01).to_i
       end
       client_wallet.save
     end
@@ -25,10 +25,10 @@ class Credit < ApplicationRecord
   def update_client_wallet
     if self.accepted?
       if client_wallet.category.bonus_conversion.nil?
-        client_wallet.balance += (value / Currency.active.last.currency_value).to_i
+        client_wallet.balance += ((value / Currency.active.last.currency_value) * 100).to_i
       else
         bonus_conversion = client_wallet.category.bonus_conversion
-        ruby_value = (value / Currency.active.last.currency_value).to_i
+        ruby_value = ((value / Currency.active.last.currency_value) * 100.0).to_i
         client_wallet.balance += ruby_value
         self.bonus_balance = ((ruby_value * bonus_conversion.percentage) * 0.01).to_i 
         self.save

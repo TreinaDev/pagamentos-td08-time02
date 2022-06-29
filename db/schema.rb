@@ -72,8 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_192054) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "bonus_balance"
-    t.integer "bonus_conversion"
+    t.integer "bonus_balance", default: 0
     t.index ["bonus_conversion_id"], name: "index_credits_on_bonus_conversion_id"
     t.index ["client_wallet_id"], name: "index_credits_on_client_wallet_id"
   end
@@ -94,7 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_192054) do
     t.float "currency_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "cashback"
+    t.integer "cashback", default: 0
     t.integer "order"
     t.text "message"
   end
