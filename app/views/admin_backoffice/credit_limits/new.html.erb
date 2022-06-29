@@ -1,0 +1,11 @@
+<% if @credit_limit.errors.any? %>
+  <%= @credit_limit.errors.full_messages.each do |m| %>
+    <%= m %>
+  <%end%>
+<% end %>
+
+<%= form_with(model: [:admin_backoffice, @credit_limit]) do |form| %>
+  <%= form.label :max_limit %>
+  <%= form.number_field :max_limit %>
+  <%= form.submit I18n.t(:save) %>
+<% end %>
