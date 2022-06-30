@@ -13,7 +13,7 @@
 
   <body>
     <header class="p-3 bg-dark text-white">
-      <div class="container">
+      <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-between ">
           <%= link_to root_path, class: 'd-flex align-items-center  mb-2 mb-md-0 text-dark text-decoration-none' do %>
             <%= image_tag 'coins.png', size: '50x50', alt: I18n.t(:payments), title: I18n.t(:payments) %> 
@@ -36,7 +36,9 @@
                 <%= link_to I18n.t(:bonus_conversions), admin_backoffice_bonus_conversions_path, class: 'nav-link px-2 text-white' %>
                 <%= link_to I18n.t(:categories),  admin_backoffice_categories_path, class: 'nav-link px-2 text-white' %>
                 <%= link_to I18n.t(:clients_wallets), admin_backoffice_client_wallets_path, class: 'nav-link px-2 text-white' %>
-                <%= link_to 'Transações', admin_backoffice_transactions_path, class: 'nav-link px-2 text-white' %>
+                <%= link_to I18n.t(:transaction), admin_backoffice_transactions_path, class: 'nav-link px-2 text-white' %>
+                <%= link_to I18n.t(:new_credit_limit), new_admin_backoffice_credit_limit_path, class: 'nav-link px-2 text-white' %>
+                <%= link_to I18n.t(:pending_credits), admin_backoffice_credits_path, class: 'nav-link px-2 text-white' %>
                 <%= button_to I18n.t(:exit), destroy_admin_session_path, method: :delete, class: 'nav-link exit-button' %>
               </ul> 
             </div>

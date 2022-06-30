@@ -1,0 +1,9 @@
+pt-BR:
+  credit_limit_create_success: Limite de crédito diário cadastrado com sucesso!
+  credit_limit_create_fail: Limite de crédito diário não adicionado. Verifique os erros.
+  activerecord:
+    models:
+      credit_limit: Limite de Crédito Diário
+    attributes:
+      credit_limit:
+        max_limit: Limite de crédito diário (R$)

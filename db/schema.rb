@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_24_200942) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_27_192054) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,6 +59,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_200942) do
     t.index ["category_id"], name: "index_client_wallets_on_category_id"
   end
 
+  create_table "credit_limits", force: :cascade do |t|
+    t.integer "max_limit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "credits", force: :cascade do |t|
+    t.integer "value"
+    t.integer "bonus_conversion_id"
+    t.integer "client_wallet_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "bonus_balance", default: 0
+    t.index ["bonus_conversion_id"], name: "index_credits_on_bonus_conversion_id"
+    t.index ["client_wallet_id"], name: "index_credits_on_client_wallet_id"
+  end
+
   create_table "currencies", force: :cascade do |t|
     t.integer "status", default: 0
     t.float "currency_value"
@@ -84,5 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_200942) do
   add_foreign_key "bonus_conversions", "admins"
   add_foreign_key "categories", "bonus_conversions"
   add_foreign_key "client_wallets", "categories"
+  add_foreign_key "credits", "bonus_conversions"
+  add_foreign_key "credits", "client_wallets"
   add_foreign_key "currencies", "admins"
 end

@@ -7,7 +7,7 @@
   <dd> <%= @client_wallet.email %> </dd>
   <dt><%= ClientWallet.human_attribute_name(:balance) %></dt>
   <dd> <%= @client_wallet.balance %> </dd>
-  <dt><%= ClientWallet.human_attribute_name(:balance) %></dt>
+  <dt><%= ClientWallet.human_attribute_name(:bonus_balance) %></dt>
   <dd> <%= @client_wallet.bonus_balance %> </dd>
   <%= form_with(model: [:admin_backoffice, @client_wallet]) do |form| %>
     <div>
