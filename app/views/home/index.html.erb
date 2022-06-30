@@ -1,6 +1,10 @@
 <div class='container'>
-  <% if admin_signed_in? %>
-    <%= link_to I18n.t(:approval_requisitions), admin_backoffice_pending_admins_path %>
-    <h4><%= CreditLimit.model_name.human %>: <%= number_to_currency(CreditLimit.last.max_limit) if @credits.any? %></h4>
+  <% if admin_signed_in?  %> 
+    <% if  Admin.pending.any?  %>
+      <%= link_to I18n.t(:approval_requisitions), admin_backoffice_pending_admins_path, 
+                  class: 'btn btn-primary mt-4 mb-3' %>
+    <% end %>
+    
+    <h4 class='mt-2'><%= CreditLimit.model_name.human %>: <%= number_to_currency(CreditLimit.last.max_limit) if @credits.any? %></h4>
   <% end %>
 </div>

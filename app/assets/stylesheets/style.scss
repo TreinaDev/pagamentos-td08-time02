@@ -76,6 +76,11 @@ button {
   margin: 0 auto;
   width: 395px;
 }
+
+.btn-center-table { 
+  display: flex;
+  gap: 10px
+}
 /* Botão */
 
 .margin-left {
@@ -127,3 +132,6 @@ button {
   border-radius: 5px;
 }
 
+th, td{
+  text-align: center;
+}
