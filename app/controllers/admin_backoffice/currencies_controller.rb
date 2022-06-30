@@ -19,7 +19,7 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
     @currency.save
     redirect_to admin_backoffice_currencies_path, notice: 'Taxa de Câmbio criada com sucesso.'
     params = { exchange_rate: @currency.currency_value }
-    Faraday.post('http://localhost:3000/api/v1/exchange_rates', params) 
+    Faraday.post('http://localhost:3000/api/v1/exchange_rates', params)
   end
 
   def approve

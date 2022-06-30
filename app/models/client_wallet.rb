@@ -2,6 +2,7 @@ class ClientWallet < ApplicationRecord
   belongs_to :category, optional: true
   has_many :credits
   before_create :set_default_category
+  after_update :sends_wallet_balance
   after_find :verify_bonus_balance
 
   validates :registered_number, :email, uniqueness: true
@@ -13,6 +14,13 @@ class ClientWallet < ApplicationRecord
             format: { with: %r{\A(\d{3}\.\d{3}\.\d{3}-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})\z} }
 
   private
+
+  def sends_wallet_balance
+    total_value = balance + bonus_balance
+    registered_number_striped = registered_number.split('.').join.split('-').join
+    params = { registered_number: registered_number_striped, balance: total_value }
+    Faraday.post('http://127.0.0.1:3000/api/v1/clients/update-balance', params)
+  end
 
   def set_default_category
     Category.create(name: 'Padrão', discount: 0) unless Category.any?
