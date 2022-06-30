@@ -6,7 +6,7 @@ describe 'Admin registra limite de crédito diário' do
 
     login_as(admin)
     visit(root_path)
-    click_on('Cadastrar limite de crédito diário')
+    click_on('Novo Limite')
     fill_in('Limite de crédito diário (R$)', with: 50_000)
     click_on('Salvar')
 
@@ -19,7 +19,7 @@ describe 'Admin registra limite de crédito diário' do
 
     login_as(admin)
     visit(root_path)
-    click_on('Cadastrar limite de crédito diário')
+    click_on('Novo Limite')
     fill_in('Limite de crédito diário (R$)', with: '')
     click_on('Salvar')
 

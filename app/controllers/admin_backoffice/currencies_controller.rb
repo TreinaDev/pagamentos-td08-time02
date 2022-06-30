@@ -26,7 +26,7 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
     @currency = Currency.find(params[:id])
     if current_admin.id == @currency.admin_id
       redirect_to admin_backoffice_currencies_path,
-                  notice: 'Você não pode aprovar essa taxa, solicite a outro administrador.'
+                  alert: 'Você não pode aprovar essa taxa, solicite a outro administrador.'
     else
       @currency.active!
       @currencies = Currency.last(2)

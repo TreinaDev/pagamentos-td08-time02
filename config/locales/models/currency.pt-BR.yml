@@ -8,6 +8,6 @@ pt-BR:
       currency:
         id: ID
         status: Status
-        currency_value: Valor de um Rubi
+        currency_value: Valor do Rubi
         admin_id: Administrador
-        created_at: Criado dia
+        created_at: Criado em

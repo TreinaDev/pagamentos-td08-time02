@@ -36,6 +36,9 @@ gem 'webmock'
 # Devise
 gem 'devise'
 
+# Bootstrap
+gem 'bootstrap', '~> 5.1.3'
+
 # Faraday
 gem 'faraday'
 
