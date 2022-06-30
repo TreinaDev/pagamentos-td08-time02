@@ -26,10 +26,11 @@ pt-BR:
   situation: Ação
   approval_transaction: Transação Aceita
   refuse_transaction: Transação Recusada
-  active: Ativo
+  active: Aceito
   inactive: Inativo
   pending: Pendente
   pending_currency: Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador.
   new_credit_limit: 'Novo Limite'
   pending_credits: Créditos Pendentes
   transaction: Transações
+  pending_credit: Crédito Pendente

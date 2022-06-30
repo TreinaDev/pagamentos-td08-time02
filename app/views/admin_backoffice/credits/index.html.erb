@@ -1,15 +1,32 @@
-<h4>Créditos pendentes de aprovação</h4>
+<div class='container'>
 
-<% if @credits.empty? %>
-  <p></p>Não existem créditos pendentes no momento</p>
-<% else %>
-  <ul>
-    <% @credits.each do |credit| %>
-      <li>Crédito pendente: <%= number_to_currency(credit.value) %></li>
-      <li>CPF: <%= credit.client_wallet.registered_number %> </li>
-      <li><%= button_to 'Aprovar', approve_admin_backoffice_credit_path(credit.id) %></li>
-      <li><%= button_to 'Rejeitar', refuse_admin_backoffice_credit_path(credit.id) %></li>
-    <% end %>
-  </ul>  
-<% end %>
+  <h2><%= I18n.t(:pending_credit) %></h2>
 
+  <% if @credits.empty? %>
+    <p class='d-flex justify-content-center'>Não existem créditos pendentes no momento</p>
+  <% else %>
+    <table class='table table-format'>
+      <thead>
+        <tr>
+          <th class='text-center'> <%= ClientWallet.human_attribute_name(:registered_number) %> </th>
+          <th class='text-center'> <%= Credit.human_attribute_name(:value) %> </th>
+          <th class='d-flex justify-content-center'> <%= I18n.t(:situation) %> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @credits.each do |credit| %>
+          <tr>
+            <td> <%= credit.client_wallet.registered_number %> </td>
+            <td> <%= number_to_currency(credit.value) %> </td>
+            <% if credit.pending? %>
+              <td class='btn-group ms-5'>
+                  <%= button_to t(:approve), approve_admin_backoffice_credit_path(credit.id), class:'btn btn-success btn-sm' %>
+                  <%= button_to t(:refuse), refuse_admin_backoffice_credit_path(credit.id), class:'btn btn-danger btn-sm' %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>  
+  <% end %>
+</div>

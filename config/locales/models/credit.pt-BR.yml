@@ -3,9 +3,9 @@ pt-BR:
   credit_limit_create_fail: Limite de crédito diário não adicionado. Verifique os erros.
   activerecord:
     models:
-      credit_limit: 
-        one: Limite de Crédito Diário
-        other: Limites de Créditos Diário
+      credit: 
+        one: Crédito Diário
+        other: Créditos Diário
     attributes:
-      credit_limit:
-        max_limit: Limite de crédito diário (R$)
+      credit:
+        value: Valor
