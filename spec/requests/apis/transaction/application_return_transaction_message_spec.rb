@@ -13,7 +13,7 @@ describe 'Aplicação retorna status transação' do
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
-      expect(json_response['order']).to eq(1)
+      expect(json_response['order']).to eq('1')
       expect(json_response['registered_number']).to eq('111.111.111-11')
       expect(json_response['status']).to eq('pending')
     end
@@ -30,7 +30,7 @@ describe 'Aplicação retorna status transação' do
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
-      expect(json_response['order']).to eq(1)
+      expect(json_response['order']).to eq('1')
       expect(json_response['registered_number']).to eq('111.111.111-11')
       expect(json_response['status']).to eq('accepted')
     end
@@ -48,7 +48,7 @@ describe 'Aplicação retorna status transação' do
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
-      expect(json_response['order']).to eq(1)
+      expect(json_response['order']).to eq('1')
       expect(json_response['registered_number']).to eq('111.111.111-11')
       expect(json_response['status']).to eq('rejected')
       expect(json_response['message']).to include(Transaction.last.message.to_s)

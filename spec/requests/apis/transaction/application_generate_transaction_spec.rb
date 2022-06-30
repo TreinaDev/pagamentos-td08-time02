@@ -26,6 +26,19 @@ describe 'Aplicação gera uma transação' do
       expect(response.body).to include('Número de Registro não pode ficar em branco')
       expect(response.body).to include('Número de Registro não é válido')
     end
+
+    it 'falha se order for duplicada' do
+      create(:admin, status: :active)
+      create(:currency)
+      create(:client_wallet, balance: 10)
+      create(:transaction)
+
+      params_content = { transaction: { registered_number: '111.111.111-11', value: 100, order: 1 } }
+      post '/api/v1/transactions', params: params_content
+
+      expect(response).to have_http_status(:precondition_failed)
+      expect(response.body).to include('Order já está em uso')
+    end
   end
 
   context 'e faz débito na carteira do cliente' do
