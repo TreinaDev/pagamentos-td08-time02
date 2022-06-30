@@ -34,3 +34,4 @@ pt-BR:
   pending_credits: Créditos Pendentes
   transaction: Transações
   pending_credit: Crédito Pendente
+  pending_credit_not_found: Não existem créditos pendentes no momento

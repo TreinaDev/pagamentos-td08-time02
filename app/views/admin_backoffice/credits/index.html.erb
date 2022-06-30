@@ -3,7 +3,7 @@
   <h2><%= I18n.t(:pending_credit) %></h2>
 
   <% if @credits.empty? %>
-    <p class='d-flex justify-content-center'>Não existem créditos pendentes no momento</p>
+    <p class='d-flex justify-content-center'><%= I18n.t(:pending_credit_not_found)%></p>
   <% else %>
     <table class='table table-format'>
       <thead>
