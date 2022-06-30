@@ -9,7 +9,7 @@ describe 'Administrador acessa página de créditos pendentes' do
 
     login_as(admin)
     visit(root_path)
-    click_on('Créditos pendentes')
+    click_on('Créditos Pendentes')
 
     expect(page).to have_content('Crédito pendente: R$ 200,00')
     expect(page).to have_content('CPF: 111.111.111-11')
@@ -25,7 +25,7 @@ describe 'Administrador acessa página de créditos pendentes' do
 
     login_as(admin)
     visit(root_path)
-    click_on('Créditos pendentes')
+    click_on('Créditos Pendentes')
     click_on('Aprovar')
 
     expect(page).to have_current_path(admin_backoffice_credits_path)
@@ -44,7 +44,7 @@ describe 'Administrador acessa página de créditos pendentes' do
 
     login_as(admin)
     visit(root_path)
-    click_on('Créditos pendentes')
+    click_on('Créditos Pendentes')
     click_on('Rejeitar')
 
     expect(page).to have_current_path(admin_backoffice_credits_path)
@@ -65,7 +65,7 @@ describe 'Administrador acessa página de créditos pendentes' do
 
     login_as(admin)
     visit root_path
-    click_on 'Créditos pendentes'
+    click_on 'Créditos Pendentes'
     click_on 'Aprovar'
 
     expect(page).to have_current_path(admin_backoffice_credits_path)

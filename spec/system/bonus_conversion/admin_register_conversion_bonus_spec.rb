@@ -52,6 +52,5 @@ describe 'Administrador clica em conversão bônus' do
       expect(page).to have_css 'td', text: '10%'
       expect(page).to have_css 'td', text: '5'
     end
-    expect(page).to have_link('Voltar')
   end
 end

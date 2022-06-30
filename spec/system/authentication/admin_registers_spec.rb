@@ -9,7 +9,7 @@ describe 'Administrador faz cadastro' do
     fill_in 'CPF', with: '000.000.000-00'
     fill_in 'E-mail', with: 'admin@userubis.com.br'
     fill_in 'Senha', with: '12345678'
-    fill_in 'Confirmação de senha', with: '12345678'
+    fill_in 'Confirme a senha', with: '12345678'
     click_on 'Cadastrar'
 
     expect(page).to have_current_path root_path

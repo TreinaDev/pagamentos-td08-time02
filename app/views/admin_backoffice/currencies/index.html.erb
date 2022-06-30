@@ -1,17 +1,30 @@
-<h3><%= Currency.model_name.human(count: @currencies.count) %></h3></h3>
+<div class='container'>
+  <h2><%= Currency.model_name.human(count: @currencies.count) %></h2>
 
-<div>
-  <% @currencies.each do |currency| %>
-    <div class="<% currency.status %>" style="border: 2px solid #000; margin: 10px 0; padding: 10px">
-      <% if currency.pending? %>
-        <p>Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador.</p>
-        <%= button_to I18n.t(:approve_currency), approve_admin_backoffice_currency_path(currency) %>
-        <%= button_to I18n.t(:refuse_currency), reject_admin_backoffice_currency_path(currency) %>
-      <% end %>
-      <p><%= Currency.human_attribute_name(:currency_value) %>: <%= number_to_currency(currency.currency_value)%></p>
-      <p><%=I18n.t(:responsable_user)%>: <%= currency.admin.name %></p>
-      <p><%=Currency.human_attribute_name(:status)%>: <%= currency.status %></p>
-      <p><%=Currency.human_attribute_name(:created_at)%>: <%= I18n.l(currency.created_at.to_date, format: :default) %></p>
-    </div>
-  <% end %>
+  <div>
+    <% @currencies.each do |currency| %>
+      <div class='<%= currency.status %> mb-5 p-3 rounded'>
+        <dl class='row'>
+          <% if currency.pending? %>
+            <p> <%= t(:pending_currency) %> </p>
+            <div class='btn-group mb-3'>
+              <%= button_to I18n.t(:approve_currency), approve_admin_backoffice_currency_path(currency), class: 'btn btn-success btn-sm' %>
+              <%= button_to I18n.t(:refuse_currency), reject_admin_backoffice_currency_path(currency), class: 'btn btn-danger btn-sm' %>
+            </div>
+          <% end %>
+          <dt class='col-sm-3'> <%= Currency.human_attribute_name(:currency_value) %>: </dt>
+          <dd class='col-sm-9'> <%= number_to_currency(currency.currency_value)%> </dd>
+
+          <dt class='col-sm-3'> <%=I18n.t(:responsable_user)%>: </dt>
+          <dd class='col-sm-9'> <%= currency.admin.name %> </dd>
+
+          <dt class='col-sm-3'> <%=Currency.human_attribute_name(:status)%>: </dt>
+          <dd class='col-sm-9'> <%= I18n.t(currency.status) %> </dd>
+
+          <dt class='col-sm-3'> <%=Currency.human_attribute_name(:created_at)%>: </dt>
+          <dd class='col-sm-9'> <%= I18n.l(currency.created_at.to_date, format: :default) %> </dd>
+        </dl>
+      </div>
+    <% end %>
+  </div>
 </div>
