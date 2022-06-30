@@ -1,0 +1,15 @@
+<h4>Créditos pendentes de aprovação</h4>
+
+<% if @credits.empty? %>
+  <p></p>Não existem créditos pendentes no momento</p>
+<% else %>
+  <ul>
+    <% @credits.each do |credit| %>
+      <li>Crédito pendente: <%= number_to_currency(credit.value) %></li>
+      <li>CPF: <%= credit.client_wallet.registered_number %> </li>
+      <li><%= button_to 'Aprovar', approve_admin_backoffice_credit_path(credit.id) %></li>
+      <li><%= button_to 'Rejeitar', refuse_admin_backoffice_credit_path(credit.id) %></li>
+    <% end %>
+  </ul>  
+<% end %>
+

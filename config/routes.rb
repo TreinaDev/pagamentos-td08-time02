@@ -21,6 +21,12 @@ Rails.application.routes.draw do
       post 'approve', on: :member
       post 'refuse', on: :member
     end
+
+    resources :credit_limits, only: %i[create new]
+    resources :credits, only: %i[index] do
+      post 'approve', on: :member
+      post 'refuse', on: :member
+    end
   end
 
   namespace :api do
@@ -29,6 +35,7 @@ Rails.application.routes.draw do
       resources :transactions, only: %i[create show]
       resources :client_wallets, only: %i[create]
       get 'client_wallet/balance', to: 'client_wallets#balance'
+      resources :credits, only: %i[create]
     end
   end
 end

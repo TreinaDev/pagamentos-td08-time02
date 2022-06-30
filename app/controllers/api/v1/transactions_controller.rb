@@ -7,13 +7,16 @@ class Api::V1::TransactionsController < Api::V1::ApiController
   end
 
   def create
-    transaction = Transaction.new(transaction_params)
-
-    if transaction.save
-      render status: :created, json: { status: transaction.status,
-                                       message: 'Transação realizada com sucesso!' }
+    if Currency.active.any?
+      transaction = Transaction.new(transaction_params)
+      if transaction.save
+        render status: :created, json: { status: transaction.status,
+                                         message: 'Transação realizada com sucesso!' }
+      else
+        render status: :precondition_failed, json: { errors: transaction.errors.full_messages }
+      end
     else
-      render status: :precondition_failed, json: { errors: transaction.errors.full_messages }
+      render status: :not_found, json: { error: 'Não há uma taxa de câmbia ativa' }
     end
   end
 

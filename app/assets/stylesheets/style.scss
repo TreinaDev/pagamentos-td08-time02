@@ -35,6 +35,10 @@ h3 {
 body {
   background: rgb(223, 223, 223);
 }
+
+.centralize {
+  margin: 0 auto;
+}
 /* Comum */
 
 /* Botão */
@@ -107,6 +111,7 @@ button {
 .inactive {
   background-color: rgba(255, 0, 0, 0.144);
 }
+
 .pending {
   background-color: rgba(175, 185, 27, 0.685);
 }

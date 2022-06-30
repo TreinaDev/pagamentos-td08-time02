@@ -22,6 +22,7 @@ pt-BR:
   approve_currency: Aprovar taxa
   refuse_currency: Rejeitar taxa
   responsable_user: Usuário Responsável
+  connection_rejected_message: 'Ação realizada com sucesso, porém a conexão com o e-commerce não ocorreu!'
   situation: Ação
   approval_transaction: Transação Aceita
   refuse_transaction: Transação Recusada
@@ -29,3 +30,7 @@ pt-BR:
   inactive: Inativo
   pending: Pendente
   pending_currency: Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador.
+  transactions: 'Transações'
+  new_credit_limit: 'Novo Limite'
+  pending_credits: Créditos Pendentes
+  transaction: Transações
