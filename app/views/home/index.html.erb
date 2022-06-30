@@ -1,5 +1,15 @@
-<% if admin_signed_in? %>
-  <%= link_to I18n.t(:approval_requisitions), admin_backoffice_pending_admins_path %>
-  <h4><%= CreditLimit.model_name.human %>: <%= number_to_currency(CreditLimit.last.max_limit) if @credits.any? %></h4>
-<% end %>
-
+<div class='container'>
+  <% if admin_signed_in? %>
+    <div class='d-flex flex-column border border-dark rounded-pill mt-5 show-format p-3 mb-2 bg-dark text-white'>
+      <div class='d-flex flex-row justify-content-center'>
+        <strong><%= (CreditLimit.model_name.human) %></strong>: <%= number_to_currency(CreditLimit.last.max_limit) if @credits.any? %>
+      </div>
+      <div class='d-flex flex-row justify-content-center'>
+        <strong><%= Currency.model_name.human %></strong>: <%= number_to_currency(Currency.active.last.currency_value) %>
+      </div>
+    </div>
+    <div class='mt-5 d-flex justify-content-center'>
+      <%= link_to I18n.t(:approval_requisitions), admin_backoffice_pending_admins_path, class:'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
