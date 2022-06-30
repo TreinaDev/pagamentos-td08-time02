@@ -7,9 +7,7 @@ class AdminBackoffice::CreditsController < ApplicationController
 
   def approve
     @credit.accepted!
-    @credit.client_wallet.balance += ((@credit.value/Currency.active.last.currency_value)*100).to_i
-    @credit.client_wallet.save!
-    @credit.check_for_bonus_conversion
+    @credit.update_client_wallet
     redirect_to(admin_backoffice_credits_path, notice: 'Crédito aprovado com sucesso!')
   end
 
