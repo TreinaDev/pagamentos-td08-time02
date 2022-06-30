@@ -20,7 +20,8 @@ class Credit < ApplicationRecord
   end
 
   def set_bonus_conversion
-    self.bonus_balance += (rubi_value * client_wallet.category.bonus_conversion.percentage * 0.01).to_i unless client_wallet.category.bonus_conversion.nil?
+    self.bonus_balance += (rubi_value * client_wallet.category.bonus_conversion.percentage * 0.01).to_i unless
+                                                                  client_wallet.category.bonus_conversion.nil?
   end
 
   def rubi_value
@@ -28,7 +29,9 @@ class Credit < ApplicationRecord
   end
 
   def check_credits
-    credits = Credit.where(client_wallet:).where('created_at >= :start_date AND created_at <= :end_date', { start_date: Time.zone.today.midnight, end_date: (Time.zone.tomorrow.midnight - 1) })
+    credits = Credit.where(client_wallet:).where('created_at >= :start_date AND created_at <= :end_date',
+                                                 { start_date: Time.zone.today.midnight,
+                                                   end_date: (Time.zone.tomorrow.midnight - 1) })
     credit_total = 0
     credits.each do |credit|
       credit_total += credit.value.to_i
