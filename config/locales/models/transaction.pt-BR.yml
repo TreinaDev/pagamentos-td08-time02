@@ -9,9 +9,7 @@ pt-BR:
   transaction_rejected_update: Transação não pode ser editada
   activerecord:
     models:
-      transaction: 
-        one: Transação
-        other: Transações
+      transaction: Transações
     attributes:
       transaction:
         registered_number: Número de Registro
