@@ -16,6 +16,7 @@ pt-BR:
       transaction:
         registered_number: Número de Registro
         value: Valor
+        order: Identificador do pedido
         currency_rate: Taxa no Momento
         cashback: Cashback
         status: Status
