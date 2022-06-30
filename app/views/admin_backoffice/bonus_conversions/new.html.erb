@@ -1,41 +1,48 @@
+<div class="container">
+  <div class='d-flex justify-content-center'>
+    <div>
+      <h2><%=I18n.t(:new_conversion_bonus)%></h2>
 
-<h2><%=I18n.t(:new_conversion_bonus)%></h2>
-
-
-<% if @bonus_conversion.errors.any? %>
-    <p><%= I18n.t(:verify_bellow_errors)%></p>
-    <ul>
-      <% @bonus_conversion.errors.full_messages.each do |message| %>
-        <li> <%= message %> </li>
+      <% if @bonus_conversion.errors.any? %>
+        <div class="alert alert-danger">
+          <p><%= I18n.t(:verify_bellow_errors)%></p>
+          <ul>
+            <% @bonus_conversion.errors.full_messages.each do |message| %>
+              <li> <%= message %> </li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    </ul>
-<% end %>
 
 
-<%= form_with(model: [:admin_backoffice, @bonus_conversion]) do |f| %>
-  <div>
-    <%= f.label :initial_date %>
-    <%= f.date_field :initial_date %>
-  </div>
+      <%= form_with(model: [:admin_backoffice, @bonus_conversion], class:'d-flex justify-content-center flex-column') do |f| %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :initial_date, class:"form-label" %>
+          <%= f.date_field :initial_date, class:"form-control mb-2" %>
+        </div>
 
-  <div>
-    <%= f.label :final_date %>
-    <%= f.date_field :final_date %>
-  </div>
+        <div class="col-md-6">
+          <%= f.label :final_date, class:"form-label" %>
+          <%= f.date_field :final_date, class:"form-control"%>
+        </div>
+      </div>
 
-  <div>
-    <%= f.label :percentage %>
-    <%= f.number_field :percentage %>
-  </div>
+        <div class="col-md-4">
+          <%= f.label :percentage, class:"form-label" %>
+          <%= f.number_field :percentage, class:"form-control mb-2" %>
+        </div>
 
-  <div>
-    <%= f.label :deadline %>
-    <%= f.number_field :deadline %>
-  </div>
+        <div class="col-md-6">
+          <%= f.label :deadline, class:"form-label" %>
+          <%= f.number_field :deadline, class:"form-control" %>
+        </div>
 
-  <div>
-    <%= f.submit I18n.t(:new_conversion_bonus) %>
-  </div>
-<% end %>
+        <div class="d-flex justify-content-center m-4">
+          <%= f.submit I18n.t(:new_conversion_bonus), class: 'btn btn-primary btn-submit-bonus-conversion btn-lg' %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+</div>
 
-<%= link_to I18n.t(:come_back), admin_backoffice_bonus_conversions_path %>

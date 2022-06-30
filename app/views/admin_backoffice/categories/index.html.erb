@@ -1,21 +1,30 @@
-<h2>Categorias Cadastradas</h2>
+<h2> <%= Category.model_name.human(count: 2) %> </h2>
 
-<div class="links">
-  <%= link_to I18n.t(:add_new_category), new_admin_backoffice_category_path %>
-</div>
+<div class = 'container'>
+  <div class="links">
+    <%= link_to I18n.t(:add_new_category), new_admin_backoffice_category_path, class: 'btn btn-primary mb-4' %>
+  </div>
 
-<div>
-  <% if @categories.empty? %>
-    <p>Não há categorias cadastradas</p>
-  <% end %>
-  <% @categories.each do |category| %>
-    <div class="<%= category.name.parameterize.underscore %>">
-      <p><%= Category.model_name.human %>: <%= category.name %></p>
-      <p><%= Category.human_attribute_name(:discount) %>: <%= category.discount %>%</p>
-      <% unless category.bonus_conversion.nil? %>
-        <p><%= Category.human_attribute_name(:bonus_conversion) %>: <%= category.bonus_conversion.percentage %>%</p>
-      <% end %>
-      <%= link_to I18n.t(:edit), edit_admin_backoffice_category_path(category.id) %>
-    </div>
-  <% end %>
+  <div>
+    <% if @categories.empty? %>
+      <p> <%= t(:withount_category_registered) %> </p>
+    <% end %>
+    <% @categories.each do |category| %>
+      <div class="category-container mb-4">
+        <dl class='row'>
+          <dt class = 'col-sm-3'> <%= Category.model_name.human %>: </dt>
+          <dd class = 'col-sm-9'> <%= category.name %> </dd>
+
+          <dt class = 'col-sm-3'> <%= Category.human_attribute_name(:discount) %>: </dt>
+          <dd class = 'col-sm-9'> <%= format_percentage(category.discount) %> </dd>
+
+          <% unless category.bonus_conversion.nil? %>
+            <dt class = 'col-sm-3'> <%= Category.human_attribute_name(:bonus_conversion) %>: </dt>
+            <dd class = 'col-sm-9'> <%= format_percentage(category.bonus_conversion.percentage) %> </dd>
+          <% end %>
+        </dl>
+        <%= link_to I18n.t(:edit), edit_admin_backoffice_category_path(category.id), class: 'btn btn-dark btn-sm' %>
+      </div>
+    <% end %>
+  </div>
 </div>

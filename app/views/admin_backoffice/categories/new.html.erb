@@ -1,12 +1,18 @@
-<h2>Cadastre nova categoria</h2>
+<div class="container">
+  <div class='d-flex justify-content-center'>
+    <div>
+      <h2>Cadastre nova categoria</h2>
 
-<% if @category.errors.any? %>
-  <p>Verifique os erros abaixo</p>
-  <ul>
-  <% @category.errors.full_messages.each do |error| %>
-    <li><%= error %></li>
-  <% end %>
-  </ul> 
-<% end %>
+      <% if @category.errors.any? %>
+        <p>Verifique os erros abaixo</p>
+        <ul>
+        <% @category.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+        </ul> 
+      <% end %>
 
-<%= render 'form' %>
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>
