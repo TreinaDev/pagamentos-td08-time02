@@ -6,7 +6,9 @@ pt-BR:
   edit: Editar
   activerecord:
     models:
-      category: Categoria
+      category: 
+          one: Categoria
+          other: Categorias
     attributes:
       category:
         name: Nome da categoria

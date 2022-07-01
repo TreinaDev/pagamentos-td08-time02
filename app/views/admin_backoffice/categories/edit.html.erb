@@ -1,12 +1,20 @@
-<h2>Editar Categoria</h2>
+<h2> <%= t(:edit_category) %></h2>
 
-<% if @category.errors.any? %>
-  <p>Verifique os erros abaixo</p>
-  <ul>
-  <% @category.errors.full_messages.each do |error| %>
-    <li><%= error %></li>
-  <% end %>
-  </ul> 
-<% end %>
+<div class="container">
+  <div class='d-flex justify-content-center'>
+    <div>
+      <h2>Cadastre nova categoria</h2>
 
-<%= render 'form' %>
+      <% if @category.errors.any? %>
+        <p>Verifique os erros abaixo</p>
+        <ul>
+        <% @category.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+        </ul> 
+      <% end %>
+
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

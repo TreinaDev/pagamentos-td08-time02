@@ -66,6 +66,16 @@ button {
   margin: 0 auto;
   width: 200px;
 }
+
+.btn-submit-bonus-conversion {
+  margin: 0 auto;
+  width: 395px;
+}
+
+.btn-center-table { 
+  display: flex;
+  gap: 10px
+}
 /* Botão */
 
 .margin-left {
@@ -111,16 +121,26 @@ button {
   background-color: rgba(175, 185, 27, 0.685);
 }
 
-.table {
-  max-width: 50%;
-  margin: 0 auto;
+.show-format {
+  max-width: 30%;
 }
-.table-format {
-  max-width: 40%;
+
+.category-container {
+  background-color: #CCCCCC;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+th, td{
+  text-align: center;
+}
+
+.wallet-cotainer{
+  width:  550px;
   margin: 0 auto;
 }
 
-.show-format {
-  max-width: 30%;
+.wallet-cotainer form{
+  width: 50%;
   margin: 0 auto;
 }

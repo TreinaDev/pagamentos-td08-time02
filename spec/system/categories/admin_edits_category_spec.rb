@@ -3,15 +3,13 @@ require 'rails_helper'
 describe 'Administrador edita uma categoria existente' do
   it 'com sucesso' do
     admin = create(:admin, status: :active)
-    category = create(:category)
-    other_category = create(:category, name: 'Não VIP')
+    create(:category)
+    create(:category, name: 'Não VIP')
 
     login_as(admin)
     visit root_path
     click_on 'Categorias'
-    within(".#{category.name.parameterize.underscore}") do
-      click_on 'Editar'
-    end
+    click_on 'Editar', match: :first
     fill_in 'Nome da categoria', with: 'Super VIP'
     fill_in 'Taxa de Desconto', with: 30
     click_on 'Registrar'
@@ -22,15 +20,13 @@ describe 'Administrador edita uma categoria existente' do
 
   it 'com dados inválidos' do
     admin = create(:admin, status: :active)
-    category = create(:category)
-    other_category = create(:category, name: 'Não VIP')
+    create(:category)
+    create(:category, name: 'Não VIP')
 
     login_as(admin)
     visit root_path
     click_on 'Categorias'
-    within(".#{category.name.parameterize.underscore}") do
-      click_on 'Editar'
-    end
+    click_on 'Editar', match: :first
     fill_in 'Nome da categoria', with: ''
     fill_in 'Taxa de Desconto', with: 30
     click_on 'Registrar'
@@ -41,15 +37,16 @@ describe 'Administrador edita uma categoria existente' do
 
   it 'nome da categoria duplicada' do
     admin = create(:admin, status: :active)
-    category = create(:category)
-    other_category = create(:category, name: 'Não VIP')
+    create(:category, name: 'Não VIP')
+    create(:category)
 
     login_as(admin)
     visit root_path
     click_on 'Categorias'
-    within(".#{other_category.name.parameterize.underscore}") do
-      click_on 'Editar'
+    within('div:first.category-container') do
+      click_on 'Editar', match: :first
     end
+
     fill_in 'Nome da categoria', with: 'VIP'
     fill_in 'Taxa de Desconto', with: 30
     click_on 'Registrar'
@@ -61,7 +58,7 @@ describe 'Administrador edita uma categoria existente' do
   it 'enquanto o seu status é inativo' do
     admin = create(:admin, status: :inactive)
     category = create(:category)
-    other_category = create(:category, name: 'Outra Categoria')
+    create(:category, name: 'Outra Categoria')
 
     login_as(admin)
     visit edit_admin_backoffice_category_path(category.id)
@@ -72,7 +69,7 @@ describe 'Administrador edita uma categoria existente' do
   it 'enquanto o seu status é pendente' do
     admin = create(:admin, status: :pending)
     category = create(:category)
-    other_category = create(:category, name: 'Outra Categoria')
+    create(:category, name: 'Outra Categoria')
 
     login_as(admin)
     visit edit_admin_backoffice_category_path(category.id)

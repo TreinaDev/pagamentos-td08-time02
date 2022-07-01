@@ -1,11 +1,36 @@
 <h2><%=I18n.t(:clients_wallets)%></h2>
 
-<% if @client_wallets.empty? %>
-  <p><%=I18n.t(:empty_wallets)%></p>
-<% else %>
-  <% @client_wallets.each do |wallet| %>
-    <p><%=ClientWallet.human_attribute_name(:registered_number)%>: <%= link_to wallet.registered_number, admin_backoffice_client_wallet_path(wallet.id) %></p>
-    <p><%=ClientWallet.human_attribute_name(:email)%>: <%=wallet.email %></p> 
-    <p><%=ClientWallet.human_attribute_name(:category)%>: <%=wallet.category.name %></p> 
-  <% end %>
-<% end %>
+<div class="container">
+  <div class='d-flex justify-content-center'>
+    <div>
+      <div class="mt-2">
+          <% if @client_wallets.empty? %>
+            <p><%=I18n.t(:empty_wallets)%></p>
+          <% else %>
+        </div>
+
+          <table class='table mt-2'>
+            <thead>
+              <tr>
+                <th><%=ClientWallet.human_attribute_name(:registered_number)%></th>
+                <th><%=ClientWallet.human_attribute_name(:email)%></th>
+                <th><%=ClientWallet.human_attribute_name(:category)%></th>
+                <th><%=I18n.t(:situation)%></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @client_wallets.each do |wallet| %>
+                <tr class='mt-2'>
+                  <td><%= wallet.registered_number %></td>
+                  <td><%=wallet.email %></td> 
+                  <td><%=wallet.category.name %></td>
+                  <td><%= button_to 'Acessar', admin_backoffice_client_wallet_path(wallet.id), method: :get, class: 'btn btn-dark btn-sm' %></td>
+                </tr>
+              <% end %>
+            </tbody> 
+          </table>
+          <% end %>
+    </div>
+  </div>
+</div>

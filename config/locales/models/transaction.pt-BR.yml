@@ -9,11 +9,14 @@ pt-BR:
   transaction_rejected_update: Transação não pode ser editada
   activerecord:
     models:
-      transaction: Transações
+      transaction:
+        one: Transação Realizada
+        other: Transações Realizadas
     attributes:
       transaction:
         registered_number: Número de Registro
         value: Valor
+        order: Identificador do pedido
         currency_rate: Taxa no Momento
         cashback: Cashback
         status: Status
