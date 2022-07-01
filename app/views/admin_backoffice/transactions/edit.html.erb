@@ -1,9 +1,21 @@
 <h2>Messagem de Recusa da Transação <%= @transaction.id %></h2>
 
-<%= form_with(model: [:admin_backoffice, @transaction]) do |form| %>
-  <div>
-    <%= form.label :message %>
-    <%= form.text_field :message %>
-  </div>
-  <%= form.submit 'Salvar' %>
-<% end %>
+<div class='container'>
+  <% if @transaction.errors.any? %>
+    <div class='alert alert-danger'>
+      <h3><%= t(:verify_bellow_errors) %></h3>
+      <ul>
+        <% @transaction.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_with(model: [:admin_backoffice, @transaction], class:'d-flex justify-content-center flex-column') do |form| %>
+    <div class='form-container d-flex justify-content-center'>
+      <%= form.label :message, class:'col-5 text-center align-self-center' %>
+      <%= form.text_field :message, class:'form-control col-7' %>
+    </div>
+    <%= form.submit I18n.t(:save), class: 'btn btn-primary btn-submit' %>
+  <% end %>
+</div>
