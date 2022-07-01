@@ -16,10 +16,12 @@ class ClientWallet < ApplicationRecord
   private
 
   def sends_wallet_balance
-    total_value = balance + bonus_balance
-    registered_number_striped = registered_number.split('.').join.split('-').join
-    params = { registered_number: registered_number_striped, balance: total_value }
-    Faraday.post('http://127.0.0.1:3000/api/v1/clients/update-balance', params)
+    begin
+      params = { registered_number:, balance: }
+      Faraday.post('http://127.0.0.1:3000/api/v1/clients/update-balance', params)
+    rescue Faraday::ConnectionFailed
+      
+    end
   end
 
   def set_default_category

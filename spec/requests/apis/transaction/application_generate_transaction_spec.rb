@@ -37,7 +37,7 @@ describe 'Aplicação gera uma transação' do
       post '/api/v1/transactions', params: params_content
 
       expect(response).to have_http_status(:precondition_failed)
-      expect(response.body).to include('Order já está em uso')
+      expect(response.body).to include('Identificador do pedido já está em uso')
     end
   end
 
