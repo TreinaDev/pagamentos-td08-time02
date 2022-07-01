@@ -2,10 +2,14 @@
   <% if admin_signed_in? %>
     <div class='d-flex flex-column border border-dark rounded-pill mt-5 show-format p-3 mb-2 bg-dark text-white'>
       <div class='d-flex flex-row justify-content-center'>
-        <strong><%= (CreditLimit.model_name.human) if CreditLimit.all.any? %></strong>: <%= number_to_currency(CreditLimit.last.max_limit) if CreditLimit.all.any? %>
+        <% if CreditLimit.all.any?%>
+          <strong><%= CreditLimit.model_name.human %></strong>: <%= number_to_currency(CreditLimit.last.max_limit) %>
+        <% end %>
       </div>
       <div class='d-flex flex-row justify-content-center'>
-        <strong><%= Currency.model_name.human if Currency.active.any?  %></strong>: <%= number_to_currency(Currency.active.last.currency_value) if Currency.active.any?  %>
+        <% if Currency.active.any? %>
+          <strong><%= Currency.model_name.human %></strong>: <%= number_to_currency(Currency.active.last.currency_value) %>
+        <% end %>
       </div>
     </div>
     <div class='mt-5 d-flex justify-content-center'>

@@ -23,7 +23,7 @@ describe 'Admin registra limite de crédito diário' do
     fill_in('Limite de crédito diário (R$)', with: '')
     click_on('Salvar')
 
-    expect(page).to have_content('Limite de crédito diário não adicionado. Verifique os erros.')
+    expect(page).to have_content('Limite de crédito diário não adicionado.')
     expect(page).to have_content('Limite de crédito diário (R$) não pode ficar em branco')
   end
 end

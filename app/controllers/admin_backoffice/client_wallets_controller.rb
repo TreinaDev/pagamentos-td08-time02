@@ -14,7 +14,7 @@ class AdminBackoffice::ClientWalletsController < ApplicationController
     category_param = params.require(:client_wallet).permit(:category)
     category = Category.find_by(id: category_param[:category])
     if @client_wallet.update(category: category)
-      redirect_to admin_backoffice_client_wallets_path, notice: 'Categoria alterada com sucesso.'
+      redirect_to admin_backoffice_client_wallets_path, notice: t(:category_edit_success)
     end
   end
 end

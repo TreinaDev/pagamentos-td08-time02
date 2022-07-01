@@ -1,17 +1,21 @@
-<div class='container'>
-  <h2>Cadastre Novo Limite</h2>
+<h2>Cadastre Novo Limite</h2>
 
+<div class='container'>
   <% if @credit_limit.errors.any? %>
-    <%= @credit_limit.errors.full_messages.each do |m| %>
-      <%= m %>
-    <%end%>
-  <% else %>
-    <%= form_with(model: [:admin_backoffice, @credit_limit], class:'d-flex justify-content-center flex-column') do |form| %>
-      <div class='form-container d-flex justify-content-center'>
-        <%= form.label :max_limit, class:'col-5 text-center align-self-center' %>
-        <%= form.number_field :max_limit, class:'form-control col-7' %>
-      </div>
-      <%= form.submit I18n.t(:save), class: 'btn btn-primary btn-submit' %>
-    <% end %>
+    <div class='alert alert-danger'>
+      <h3><%= t(:verify_bellow_errors) %></h3>
+      <ul>
+        <% @credit_limit.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_with(model: [:admin_backoffice, @credit_limit], class:'d-flex justify-content-center flex-column') do |form| %>
+    <div class='form-container d-flex justify-content-center'>
+      <%= form.label :max_limit, class:'col-5 text-center align-self-center' %>
+      <%= form.number_field :max_limit, class:'form-control col-7' %>
+    </div>
+    <%= form.submit I18n.t(:save), class: 'btn btn-primary btn-submit' %>
   <% end %>
 </div>

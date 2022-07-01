@@ -1,27 +1,31 @@
-<div class='container'>
-  <h2>Listagem de Administradores Pendentes</h2>
+<h2><%= t(:list_pending_admin)%></h2>
 
-  <table class='table'>
-    <thead>
-      <tr>
-        <th class='text-center'>Nome</th>
-        <th class='text-center'>E-mail</th>
-        <th class='d-flex justify-content-center'> <%= I18n.t(:situation) %> </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @pending_admins.each do |admin| %>
+<div class='container'>
+  <% if @pending_admins.any? %>
+    <table class='table'>
+      <thead>
         <tr>
-          <td class='col-4'><%= admin.name %></td>
-          <td class='col-4'><%= admin.email %></td>
-          <td class='btn-group ms-4 col-4'>
-            <% unless admin.admin_id == current_admin.id %>
-              <%= button_to I18n.t(:approve), approve_admin_backoffice_registered_admin_path(admin.id), method: :post, class:'btn btn-success btn-sm' %>
-              <%= button_to I18n.t(:refuse), refuse_admin_backoffice_registered_admin_path(admin.id), method: :post, class:'btn btn-danger btn-sm' %>
-            <% end %>
-          </td>
+          <th class='text-center'><%= t(:admin_name)%></th>
+          <th class='text-center'><%= t(:admin_email)%></th>
+          <th class='d-flex justify-content-center'> <%= I18n.t(:situation) %> </th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @pending_admins.each do |admin| %>
+          <tr>
+            <td class='col-4'><%= admin.name %></td>
+            <td class='col-4'><%= admin.email %></td>
+            <td class='btn-group ms-4 col-4'>
+              <% unless admin.admin_id == current_admin.id %>
+                <%= button_to I18n.t(:approve), approve_admin_backoffice_registered_admin_path(admin.id), method: :post, class:'btn btn-success btn-sm' %>
+                <%= button_to I18n.t(:refuse), refuse_admin_backoffice_registered_admin_path(admin.id), method: :post, class:'btn btn-danger btn-sm' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class='text-center'><%= t(:no_pending_admin) %></p>
+  <% end %>
 </div>

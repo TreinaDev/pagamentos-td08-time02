@@ -1,7 +1,6 @@
+<h2><%= I18n.t(:pending_credit) %></h2>
+
 <div class='container'>
-
-  <h2><%= I18n.t(:pending_credit) %></h2>
-
   <% if @credits.empty? %>
     <p class='d-flex justify-content-center'><%= I18n.t(:pending_credit_not_found)%></p>
   <% else %>
