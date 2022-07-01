@@ -20,6 +20,8 @@ RSpec.configure do |config|
       .to_return(status: 200)
     stub_request(:post, 'http://127.0.0.1:3000/api/v1/clients/update-balance')
       .to_return(status: 200)
+    stub_request(:post, 'http://localhost:3000/api/v1/purchases/update-status')
+      .to_return(status: 200)
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
