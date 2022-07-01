@@ -15,7 +15,7 @@
           <tr>
             <td class='col-4'><%= admin.name %></td>
             <td class='col-4'><%= admin.email %></td>
-            <td class='btn-group ms-4 col-4'>
+            <td class='btn-group ms-4 col-4 btn-center-table'>
               <% unless admin.admin_id == current_admin.id %>
                 <%= button_to I18n.t(:approve), approve_admin_backoffice_registered_admin_path(admin.id), method: :post, class:'btn btn-success btn-sm' %>
                 <%= button_to I18n.t(:refuse), refuse_admin_backoffice_registered_admin_path(admin.id), method: :post, class:'btn btn-danger btn-sm' %>

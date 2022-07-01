@@ -67,8 +67,8 @@ describe 'Administrador acessa a tela de cliente' do
     within('dl') do
       expect(page).to have_css 'dd', text: '111.111.111-11'
       expect(page).to have_css 'dd', text: 'teste3@mail.com.br'
-      expect(page).to have_css 'dd', text: '6676'
-      expect(page).to have_css 'dd', text: '666'
+      expect(page).to have_css 'dd', text: 'RU 66,76'
+      expect(page).to have_css 'dd', text: 'RU 6,66'
     end
   end
 
@@ -86,8 +86,8 @@ describe 'Administrador acessa a tela de cliente' do
     click_on 'Carteiras de Clientes'
     click_on 'Acessar'
 
-    expect(page).to have_content('Saldo 6676')
-    expect(page).to have_content('Saldo Bônus 0')
+    expect(page).to have_content('Saldo RU 66,76')
+    expect(page).to have_content('Saldo Bônus RU 0,00')
     client_wallet.reload
     expect(client_wallet.bonus_balance).to eq(0)
   end
@@ -106,8 +106,8 @@ describe 'Administrador acessa a tela de cliente' do
     click_on 'Carteiras de Clientes'
     click_on 'Acessar'
 
-    expect(page).to have_content('Saldo 6676')
-    expect(page).to have_content('Saldo Bônus 0')
+    expect(page).to have_content('Saldo RU 66,76')
+    expect(page).to have_content('Saldo Bônus RU 0,00')
     client_wallet.reload
     expect(client_wallet.bonus_balance).to eq(0)
   end
