@@ -1,6 +1,6 @@
-<div class='container'>
-  <h2><%=I18n.t(:new_currency)%></h2>
-  
+<h2><%=I18n.t(:new_currency)%></h2>
+
+<div class='container'>  
   <%= form_with(model: [:admin_backoffice, @currency], class:'d-flex justify-content-center flex-column') do |form| %>
     <div class='form-container d-flex justify-content-center'>
       <%= form.label :currency_value, class:'col-3 text-center align-self-center' %>

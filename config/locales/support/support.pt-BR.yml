@@ -1,5 +1,5 @@
 pt-BR:
-  approval_requisitions: Requisições de aprovação
+  approval_requisitions: Administradores Pendentes
   payments: Pagamentos
   register_new_currency: Nova Taxa
   register: Registrar-se
@@ -33,3 +33,8 @@ pt-BR:
   new_credit_limit: 'Novo Limite'
   pending_credits: Créditos Pendentes
   transaction: Transações
+  without_category_registered: Não há categorias cadastradas
+  listing_pendding_admins: Listagem de Administradores Pendentes
+  edit_category: Editar Categoria
+  register_new_category: Cadastre nova categoria
+

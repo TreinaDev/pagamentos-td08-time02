@@ -19,12 +19,14 @@ describe 'Administrador acessa a tela de cliente' do
     login_as(Admin.first)
     visit root_path
     click_on 'Carteiras de Clientes'
-    click_on '111.111.111-11'
+    click_on 'Acessar'
     select 'Mais que VIP', from: 'Categoria'
     click_on 'Salvar'
 
     expect(page).to have_content 'Categoria alterada com sucesso.'
-    expect(page).to have_content 'Categoria: Mais que VIP'
+    within('table tbody tr') do
+      expect(page).to have_content 'Mais que VIP'
+    end
   end
 
   it 'e vê cliente cadastrado com CNPJ' do
@@ -35,25 +37,39 @@ describe 'Administrador acessa a tela de cliente' do
     visit root_path
     click_on 'Carteiras de Clientes'
 
-    expect(page).to have_content 'CPF ou CNPJ: 41.780.304/0001-04'
-    expect(page).to have_link '41.780.304/0001-04'
+    within('table thead tr') do
+      expect(page).to have_content 'CPF ou CNPJ'
+    end
+    within('table tbody tr') do
+      expect(page).to have_content '41.780.304/0001-04'
+    end
   end
 
   it 'e adiciona saldo bônus à carteira do cliente durante promoção' do
     admin = create(:admin, status: :active)
     bonus_conversion = create(:bonus_conversion, percentage: 10, admin:)
     category = create(:category, bonus_conversion:)
-    client_wallet = create(:client_wallet, bonus_balance: 0, category:)
+    client_wallet = create(:client_wallet, bonus_balance: 0, category:, email: 'teste3@mail.com.br')
     create(:currency)
     create(:credit, bonus_conversion:, client_wallet:, created_at: 1.day.ago)
 
     login_as(Admin.first)
     visit root_path
     click_on 'Carteiras de Clientes'
-    click_on client_wallet.registered_number
+    click_on 'Acessar'
 
-    expect(page).to have_content('Saldo 6676')
-    expect(page).to have_content('Saldo Bônus 666')
+    within('dl') do
+      expect(page).to have_css 'dt', text: 'CPF ou CNPJ'
+      expect(page).to have_css 'dt', text: 'E-mail'
+      expect(page).to have_css 'dt', text: 'Saldo'
+      expect(page).to have_css 'dt', text: 'Saldo Bônus'
+    end
+    within('dl') do
+      expect(page).to have_css 'dd', text: '111.111.111-11'
+      expect(page).to have_css 'dd', text: 'teste3@mail.com.br'
+      expect(page).to have_css 'dd', text: '6676'
+      expect(page).to have_css 'dd', text: '666'
+    end
   end
 
   it 'e tem o saldo bônus expirado após o deadline' do
@@ -68,7 +84,7 @@ describe 'Administrador acessa a tela de cliente' do
     login_as(Admin.first)
     visit root_path
     click_on 'Carteiras de Clientes'
-    click_on client_wallet.registered_number
+    click_on 'Acessar'
 
     expect(page).to have_content('Saldo 6676')
     expect(page).to have_content('Saldo Bônus 0')
@@ -88,7 +104,7 @@ describe 'Administrador acessa a tela de cliente' do
     login_as(Admin.first)
     visit root_path
     click_on 'Carteiras de Clientes'
-    click_on client_wallet.registered_number
+    click_on 'Acessar'
 
     expect(page).to have_content('Saldo 6676')
     expect(page).to have_content('Saldo Bônus 0')

@@ -1,6 +1,6 @@
-<div class='container'>
-  <h2><%= Currency.model_name.human(count: @currencies.count) %></h2>
+<h2><%= Currency.model_name.human(count: 2) %></h2>
 
+<div class='container'>
   <div>
     <% @currencies.each do |currency| %>
       <div class='<%= currency.status %> mb-5 p-3 rounded'>
