@@ -2,7 +2,7 @@ class AdminBackoffice::TransactionsController < AdminBackofficeController
   before_action :set_params, only: %i[approve refuse edit update]
 
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.order(created_at: :asc)
   end
 
   def approve

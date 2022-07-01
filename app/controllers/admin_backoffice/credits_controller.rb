@@ -2,7 +2,7 @@ class AdminBackoffice::CreditsController < ApplicationController
   before_action :set_credit, only: %i[approve refuse]
 
   def index
-    @credits = Credit.pending
+    @credits = Credit.pending.order(created_at: :asc)
   end
 
   def approve
