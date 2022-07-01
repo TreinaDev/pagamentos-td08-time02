@@ -13,7 +13,7 @@ class AdminBackoffice::CategoriesController < AdminBackofficeController
     if @category.save
       redirect_to admin_backoffice_categories_path, notice: I18n.t(:create_success)
     else
-      flash.now[:notice] = I18n.t(:create_fail)
+      flash.now[:alert] = I18n.t(:create_fail)
       @bonus = BonusConversion.order(:percentage)
       render 'new'
     end

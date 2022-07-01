@@ -8,12 +8,12 @@ class AdminBackoffice::CreditsController < ApplicationController
   def approve
     @credit.accepted!
     @credit.update_client_wallet
-    redirect_to(admin_backoffice_credits_path, notice: 'Crédito aprovado com sucesso!')
+    redirect_to(admin_backoffice_credits_path, notice: t(:credit_approved_success))
   end
 
   def refuse
     @credit.refused!
-    redirect_to(admin_backoffice_credits_path, notice: 'Crédito rejeitado com sucesso!')
+    redirect_to(admin_backoffice_credits_path, notice: t(:credit_rejected_success))
   end
 
   private

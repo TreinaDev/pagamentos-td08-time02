@@ -16,7 +16,7 @@ describe 'Administrador cadastra uma taxa de câmbio' do
     expect(page).to have_content 'Valor do Rubi: R$ 1,50'
     expect(page).to have_content 'Usuário Responsável: Admin de Solza'
     expect(page).to have_content "Criado em: #{I18n.l Time.zone.today}"
-    expect(page).to have_content 'Status: Ativo'
+    expect(page).to have_content 'Status: Aceito'
   end
 
   it 'e vê lista de taxas de câmbio cadastradas' do
@@ -34,10 +34,10 @@ describe 'Administrador cadastra uma taxa de câmbio' do
     expect(page).to have_content 'Taxas de Câmbio'
     expect(page).to have_content 'Valor do Rubi: R$ 1,50'
     expect(page).to have_content 'Usuário Responsável: Admin de Solza'
-    expect(page).to have_content 'Status: Ativo'
+    expect(page).to have_content 'Status: Aceito'
     expect(page).to have_content 'Valor do Rubi: R$ 1,60'
     expect(page).to have_content 'Usuário Responsável: Admin de Solza'
-    expect(page).to have_content 'Status: Ativo'
+    expect(page).to have_content 'Status: Aceito'
   end
 
   it 'e vê inactivo quando criado a mais de 3 dias' do

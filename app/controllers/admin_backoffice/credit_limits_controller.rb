@@ -8,7 +8,7 @@ class AdminBackoffice::CreditLimitsController < ApplicationController
     if @credit_limit.save
       redirect_to root_path, notice: I18n.t(:credit_limit_create_success)
     else
-      flash.now[:notice] = I18n.t(:credit_limit_create_fail)
+      flash.now[:alert] = I18n.t(:credit_limit_create_error)
       render 'new'
     end
   end

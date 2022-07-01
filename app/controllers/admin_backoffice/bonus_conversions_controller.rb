@@ -11,9 +11,9 @@ class AdminBackoffice::BonusConversionsController < AdminBackofficeController
     @bonus_conversion = BonusConversion.new(bonus_conversion_params)
     if @bonus_conversion.save
       redirect_to admin_backoffice_bonus_conversions_path,
-                  notice: 'Conversão bônus cadastrada com sucesso!'
+                  notice: t(:bonus_conversion_success)
     else
-      flash.now[:notice] = 'A conversão bônus não pode ser cadastrada com sucesso!'
+      flash.now[:alert] = t(:bonus_conversion_fail)
       render :new
     end
   end

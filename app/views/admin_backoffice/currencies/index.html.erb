@@ -12,17 +12,17 @@
               <%= button_to I18n.t(:refuse_currency), reject_admin_backoffice_currency_path(currency), class: 'btn btn-danger btn-sm' %>
             </div>
           <% end %>
-          <dt class='col-sm-3'> <%= Currency.human_attribute_name(:currency_value) %>: </dt>
-          <dd class='col-sm-9'> <%= number_to_currency(currency.currency_value)%> </dd>
+          <dt class='col-sm-4'> <%= Currency.human_attribute_name(:currency_value) %>: </dt>
+          <dd class='col-sm-8'> <%= number_to_currency(currency.currency_value)%> </dd>
 
-          <dt class='col-sm-3'> <%=I18n.t(:responsable_user)%>: </dt>
-          <dd class='col-sm-9'> <%= currency.admin.name %> </dd>
+          <dt class='col-sm-4'> <%=I18n.t(:responsable_user)%>: </dt>
+          <dd class='col-sm-8'> <%= currency.admin.name %> </dd>
 
-          <dt class='col-sm-3'> <%=Currency.human_attribute_name(:status)%>: </dt>
-          <dd class='col-sm-9'> <%= I18n.t(currency.status) %> </dd>
+          <dt class='col-sm-4'> <%=Currency.human_attribute_name(:status)%>: </dt>
+          <dd class='col-sm-8'> <%= I18n.t(currency.status) %> </dd>
 
-          <dt class='col-sm-3'> <%=Currency.human_attribute_name(:created_at)%>: </dt>
-          <dd class='col-sm-9'> <%= I18n.l(currency.created_at.to_date, format: :default) %> </dd>
+          <dt class='col-sm-4'> <%=Currency.human_attribute_name(:created_at)%>: </dt>
+          <dd class='col-sm-8'> <%= I18n.l(currency.created_at.to_date, format: :default) %> </dd>
         </dl>
       </div>
     <% end %>

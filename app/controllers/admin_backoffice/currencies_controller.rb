@@ -17,7 +17,7 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
     @currency = Currency.new(params.require(:currency).permit(:currency_value).merge(admin_id: @admin.id))
 
     @currency.save
-    redirect_to admin_backoffice_currencies_path, notice: 'Taxa de Câmbio criada com sucesso.'
+    redirect_to admin_backoffice_currencies_path, notice: t(:currency_created)
     params = { exchange_rate: @currency.currency_value }
     Faraday.post('http://localhost:3000/api/v1/exchange_rates', params)
   end
@@ -26,12 +26,12 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
     @currency = Currency.find(params[:id])
     if current_admin.id == @currency.admin_id
       redirect_to admin_backoffice_currencies_path,
-                  alert: 'Você não pode aprovar essa taxa, solicite a outro administrador.'
+                  alert: t(:fail_approved)
     else
       @currency.active!
       @currencies = Currency.last(2)
       @currencies.first.inactive!
-      redirect_to admin_backoffice_currencies_path, notice: 'Taxa aprovada com sucesso!'
+      redirect_to admin_backoffice_currencies_path, notice: t(:success_approved)
       params = { exchange_rate: @currency.currency_value }
       Faraday.post('http://localhost:3000/api/v1/exchange_rates', params) 
     end
@@ -40,20 +40,20 @@ class AdminBackoffice::CurrenciesController < AdminBackofficeController
   def reject
     @currency = Currency.find(params[:id])
     @currency.inactive!
-    redirect_to admin_backoffice_currencies_path, notice: 'Taxa rejeitada com sucesso!'
+    redirect_to admin_backoffice_currencies_path, notice: t(:success_rejected)
   end
 
   private
 
   def authorize_active_admin
     unless current_admin.active?
-      redirect_to root_path, notice: 'Você não tem acesso ao sistema. Aguarde a liberação para acessar a página.'
+      redirect_to root_path, notice: t(:fail_access)
     end
   end
 
   def check_pending
     if Currency.pending.any?
-      redirect_to admin_backoffice_currencies_path, notice: 'Não pode ser criada nova taxa enquanto tiver uma pendente.'
+      redirect_to admin_backoffice_currencies_path, notice: t(:error_pending_currency)
     end
   end
 end

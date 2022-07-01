@@ -22,17 +22,37 @@ pt-BR:
   approve_currency: Aprovar taxa
   refuse_currency: Rejeitar taxa
   responsable_user: Usuário Responsável
-  connection_rejected_message: 'Ação realizada com sucesso, porém a conexão com o e-commerce não ocorreu!'
+  connection_rejected_message: Ação realizada com sucesso, porém a conexão com o e-commerce não ocorreu!
   situation: Ação
   approval_transaction: Transação Aceita
   refuse_transaction: Transação Recusada
-  active: Ativo
+  active: Aceito
   inactive: Inativo
   pending: Pendente
   pending_currency: Taxa criada é 10% maior que a anterior. Esperando aprovação de outro administrador.
-  new_credit_limit: 'Novo Limite'
+  new_credit_limit: Novo Limite
   pending_credits: Créditos Pendentes
   transaction: Transações
+  pending_credit: Crédito Pendente
+  credit_over_limit: Crédito acima do limite permitido. Aguardando aprovação.
+  pending_credit_not_found: Não existem créditos pendentes no momento
+  list_pending_admin: Listagem de Administradores Pendentes
+  admin_name: Nome
+  admin_email: E-mail
+  bonus_conversion_fail: A conversão bônus não pode ser cadastrada com sucesso!
+  bonus_conversion_success: Conversão bônus cadastrada com sucesso!
+  category_edit_success: Categoria alterada com sucesso.
+  credit_approved_success: Crédito aprovado com sucesso!
+  credit_rejected_success: Crédito rejeitado com sucesso!
+  currency_created: Taxa de Câmbio criada com sucesso.
+  fail_approved: Você não pode aprovar essa taxa, solicite a outro administrador.
+  success_approved: Taxa aprovada com sucesso!
+  success_rejected: Taxa rejeitada com sucesso!
+  fail_access: Você não tem acesso ao sistema. Aguarde a liberação para acessar a página.
+  error_pending_currency: Não pode ser criada nova taxa enquanto tiver uma pendente.
+  no_currency_active: Não há uma taxa de câmbia ativa
+  credit_limit_create_error: Limite de crédito diário não adicionado.
+  no_pending_admin: Não há administradores aguardando aprovação
   without_category_registered: Não há categorias cadastradas
   listing_pendding_admins: Listagem de Administradores Pendentes
   edit_category: Editar Categoria
