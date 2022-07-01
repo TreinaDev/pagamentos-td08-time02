@@ -11,10 +11,10 @@
         <dd class="col-sm-9"><%= @client_wallet.email %></dd>
 
         <dt class="col-sm-3"><%= ClientWallet.human_attribute_name(:balance) %></dt>
-        <dd class="col-sm-9"><%= @client_wallet.balance %></dd>
+        <dd class="col-sm-9"><%= format_rubi_value(@client_wallet.balance) %></dd>
 
         <dt class="col-sm-3"><%= ClientWallet.human_attribute_name(:bonus_balance) %></dt>
-        <dd class="col-sm-9"><%= @client_wallet.bonus_balance %></dd>
+        <dd class="col-sm-9"><%= format_rubi_value(@client_wallet.bonus_balance) %></dd>
       </dl>
       <%= form_with(model: [:admin_backoffice, @client_wallet]) do |form| %>
         <div class="col-sm-9">

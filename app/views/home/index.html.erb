@@ -12,8 +12,11 @@
         <% end %>
       </div>
     </div>
-    <div class='mt-5 d-flex justify-content-center'>
-      <%= link_to I18n.t(:approval_requisitions), admin_backoffice_pending_admins_path, class:'btn btn-primary' %>
-    </div>
+    
+    <% if Admin.pending.any? || Admin.inactive.any? %>
+      <div class='mt-5 d-flex justify-content-center'>
+        <%= link_to I18n.t(:approval_requisitions), admin_backoffice_pending_admins_path, class:'btn btn-primary' %>
+      </div>
+    <% end %>
   <% end %>
 </div>

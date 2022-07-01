@@ -18,7 +18,7 @@
             <td> <%= credit.client_wallet.registered_number %> </td>
             <td> <%= number_to_currency(credit.value) %> </td>
             <% if credit.pending? %>
-              <td class='btn-group ms-5'>
+              <td class='btn-group ms-5 btn-center-table'>
                   <%= button_to t(:approve), approve_admin_backoffice_credit_path(credit.id), class:'btn btn-success btn-sm' %>
                   <%= button_to t(:refuse), refuse_admin_backoffice_credit_path(credit.id), class:'btn btn-danger btn-sm' %>
               </td>
