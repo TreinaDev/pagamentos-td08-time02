@@ -74,7 +74,7 @@ button {
 
 .btn-center-table { 
   display: flex;
-  gap: 10px
+  gap: 10px;
 }
 /* Botão */
 
@@ -157,5 +157,10 @@ th, td{
 
 .show-format {
   max-width: 30%;
+  margin: 0 auto;
+}
+
+.admin-format {
+  max-width: 70%;
   margin: 0 auto;
 }
