@@ -16,7 +16,7 @@
   <dd>rails db:seed</dd>
 </dl>
 
-<p>Com isso feito você pode rodar o servidor executando o comando 'rails s'</p>
+<p>Com isso feito você pode rodar o servidor executando o comando 'rails s -p 4000'</p>
 
 <dl>
   <dt>Para utilizar o aplicativo você pode logar na aplicação com um administrador padrão</dt>
